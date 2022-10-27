@@ -12,12 +12,18 @@ import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import mongoose from "mongoose";
 import { IoMdDisc } from "react-icons/io";
+import { FormControlUnstyledContext } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const Login = () => {
 
     const [UserName, setUserName] = useState("");
     const [Password, setPassword] = useState("");
     const [SecretKey, setSecretKey] = useState("");
+   
     const [AuthStatus, setAuthStatus] = useState("NotValid");
     const [Message, SetMessage] = useState("");
     const [AccessToken, setAccessToken] = useState("");
@@ -34,7 +40,7 @@ const Login = () => {
       console.log(SecretKey);
     };
   
-    const [UserType, setUserType] = useState("");
+    const [UserType, setUserType] = useState("User");
     async function submitLogin(e) {
       console.log(UserName);
       console.log("Password is ",Password);
@@ -88,7 +94,7 @@ const Login = () => {
           })
           .then((Response) => {
             if (Response.data.resval === "TokenVerified") {
-              window.location.replace(`/User/${UserName}`);
+              window.location.replace(`/${UserType}/${UserName}`);
             }
             console.log(Response.data);
           })
@@ -175,86 +181,44 @@ const Login = () => {
           
         />
            </div>
-               <div className='Login-Options'>
-
-               <FcGoogle className="LoginOption-Icons" />
-               <SiFacebook className="LoginOption-Icons" />
-               <AiOutlineMail className="LoginOption-Icons" />
-           </div>
-           <div className='OtherRoom-Wrapper'>
-           <div className='QuickRoom-Container'>
-           <Button variant="text"
-                   id="QuickRoom-LoginButton"
-                   onClick={()=>{
-                  const ele=document.getElementById("QuickRoom-Login-Div")
-                  if(ele){ ele.style.position="fixed";
-                  ele.classList.remove("Hide");
-                   }
-                  //const ele2=document.getElementById("QuickRoom-LoginButton").style.display="none";
-                  
-                   }
-                  }
-           >Quick Room</Button>
-           <div className="Hide Show-Login" id="QuickRoom-Login-Div" >
-
-           <TextField
-          id="QuickRoom-Login"
-          label="Quick Room ID"
-          type="search"
-          variant="standard"
-          className="QuickRoom-Login"
-        />
-        <TextField
-          id="QuickRoom--UsersName-Login"
-          label="User Name"
-          type="search"
-          variant="standard"
-          className="QuickRoom-Login"
-        />
-         <Button variant="contained"
-         id="QuickLogin-Button"
-   className="LoginSubmit"
-   onClick={(e) => {
-    var id = document.getElementById("QuickRoom-Login");
-    if(id) id=id.value;
-    var name= document.getElementById("QuickRoom--UsersName-Login");
-    if(name) name= name.value;
-    if(id.length<1 || id.length>20)  document.getElementById("Login-HelperText-QuickRoom").innerHTML="Length Of Room Id should be >1 and <21";
-    else if(name.length<1 || name.length>20)  document.getElementById("Login-HelperText-QuickRoom").innerHTML="Length Of User Name should be >1 and <28";
-    else
-    createQuickRoom(e);
-  }}
-  sx={{
-    width:'120px' , height:'60px'
-  }}
-   >Join Quick room</Button>
-   <p id="Login-HelperText-QuickRoom"></p>
-          </div>
-           </div>
-           <div className='SavedRoom-Container'>
-
-           <Button variant="text"
-           id="SavedRoom-LoginButton"
-           onClick={()=>{
-           
-            const ele=document.getElementById("SavedRoom-Login-Div").classList.add("Show");
-            
-                  const ele2=document.getElementById("SavedRoom-LoginButton").style.display="none";
-             }
-            }
-           >Saved Room</Button>
-            <div className="Hide" id="SavedRoom-Login-Div">
-           <TextField
-          id="SavedRoom-Login"
-          label="Saved Room ID"
-          type="search"
-          variant="standard"
-          className="SavedRoom-Login"
-        />  </div>
-           </div>
-           </div>
-       </div>
+          <div>
+          <FormControl>
+          <InputLabel
+            id="demo-simple-select-label"
+            sx={{
+              width: "600px",
+              display: "flex",
+              flexFlow: "row wrap",
+              alignItems: "center",
+              justifyContent: "space-around",
+            }}
+          >
+            UserType
+          </InputLabel>
+          <Select
+            sx={{ width: "150px", marginBottom: "3vh" }}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={UserType}
+            label="User Type"
+            inputProps={{
+              style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            }}
+            InputLabelProps={{
+              style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            }}
+            onChange={(e) => {
+              setUserType(e.target.value); const UserTypeX=e.target.value; console.log(UserType); console.log(UserTypeX);
+             
+            }}
+          >
+            <MenuItem value={"User"}>User</MenuItem>
+            <MenuItem value={"Seller"}>Seller</MenuItem>
+          </Select>
+        </FormControl>
        
+       </div>
+       </div>
    </div>
    <div className="LoginSubmit-Div">
    <Button variant="contained"
