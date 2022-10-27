@@ -1,0 +1,88 @@
+.DescriptionWrapper{
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.Description-FullName{
+    text-align: left;
+    font-size: 30px;
+    font-weight: 550;
+}
+
+.Description-Top{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.Description-Top-Left{
+    width: 600px;
+    height: 380px;
+    align-self: flex-start;
+    float: left;
+}
+
+.Description-Top-Right{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Description-Top-Right-Top{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.Description-Top-Right-Bottom{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 200px;
+}
+.DescriptionPage-QuantityWrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    width: 200px;
+    margin-top: 50px;
+}
+
+.DescriptionPage-QuantityButtons{
+    width: 60px;
+    height: 60px;
+    font-size: 45px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.Description-Count{
+    width: 60px;
+    height: 60px;
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.Description-Top-Right-Price{
+    width: 100px;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 500;
+}
+.Description-AddCart-Button{
+    width: 200px;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 500;
+    color: green;
+    cursor: pointer;
+    background-color: rgb(255, 127, 140);
+    border-radius: 4px;
+    padding: 5px;
+}

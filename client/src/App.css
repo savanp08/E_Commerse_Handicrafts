@@ -1,0 +1,25 @@
+.App-Wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: white;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.NavDiv-InApp{
+  width: 100%;
+  flex:0.1;
+  
+}
+
+.Content-InApp{
+  width: 100%;
+  flex: 0.9;
+  
+}
+
+.Hide{
+  display: none !important;
+}

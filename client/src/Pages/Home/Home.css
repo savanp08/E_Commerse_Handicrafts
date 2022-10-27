@@ -1,0 +1,123 @@
+
+
+.Home-Wrapper{
+    display:flex;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Home-title{
+    text-align: center;
+    font-size: x-large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Home-Catagories{
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+    height: fit-content;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.Category-ele-Wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 85px;
+    height: 100px;
+    margin:0px 15px;
+    cursor: pointer;
+}
+.Category-ele-Wrapper:hover .category-ele-avatar{
+    box-shadow: 4px 4px 10px rgb(75, 74, 74);
+}
+.category-ele-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.category-ele-name{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+
+.Home-Catagories::-webkit-scrollbar {
+    width: 0px;
+    height: 2px;
+}
+
+  .Home-Catagories::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    width: 3px;
+  }
+
+  .Home-Catagories::-webkit-scrollbar-thumb {
+    background: #888;
+    width: 3px;
+  
+}
+
+  .Home-Catagories::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }   
+    .Carousel-home{
+      width:1000px;
+      height:370px;
+    }
+    
+    .Carousel-home img{
+      width: 100%;
+      height:370px;
+    }
+    
+    .Custom-Insert {
+      position: relative;
+      max-width: 50%;
+      justify-content: flex-end;
+      align-content: center;
+      display: flex;
+      align-self: flex-end;
+    }
+    
+    .CustomQuote {
+      text-align: end;
+      font-size: 7vmin;
+      font-weight: bolder;
+      align-self: flex-end;
+      color: white;
+    }
+    .Home-BestOffersWrapper{
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+    }
+    .Home-BestOffersContainer{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      width: 80%;
+    }
+    .Home-BestOffersWrapper{
+      margin-top: 40px;
+    }
+
+    .Home-Title-MostRecent{
+      width: 100%;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    }

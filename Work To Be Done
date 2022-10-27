@@ -1,0 +1,13 @@
+Integrate Redux to its complexity
+integrate Docker if possible
+
+if back button on browser is clicked the previous page mist come not the initial page
+use useHistory hook
+integrate 3D view for products
+integrate payments gateway
+learn and use TypeScript and scss and angular and jQuery
+Make Mobile First
+
+Keep Renders to minimum
+Use minimum useStates and ueEffects 
+Make Good UI

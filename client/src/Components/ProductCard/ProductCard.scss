@@ -1,0 +1,53 @@
+.ProductCard-Wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    width: 300px;
+    min-width: 200px;
+    box-shadow: 0px 5px 5px rgb(143, 136, 136) ;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-right: 19px;
+    cursor: pointer;
+}
+
+.ProductCard-LeftWrapper{
+    width: 300px;
+    height: 250px;
+}
+
+.ProductCard-RightWrapper{
+    width: 300px;
+    height: 110px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.ProductCard-Name{
+    text-align: left;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+    width: 100%;
+    padding-left: 5px;
+
+}
+
+.ProductCard-MainInfo-Wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-around;
+    text-align: left;
+    width: 100%;
+}
+
+.ProductCard-Description{
+    width: 100%;
+    max-width: 280px;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

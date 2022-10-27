@@ -1,0 +1,22 @@
+All content changes related to default home , ingredients home, products home should be in one component, change content in display array
+
+Topic Description
+    |
+    v
+    Types of Items / catagories
+    |
+    v
+    Some Offers or Most Purchased etc
+    |
+    v
+    Most Favoured Today or (Related to ur Purchases using related search and sorting i using some criteria)
+    |
+    v
+    Footer
+
+queries page should contain a option to scroll horizontally , all products with a similarity should appear there 
+
+cart count on navbar
+
+circular nav 
+
