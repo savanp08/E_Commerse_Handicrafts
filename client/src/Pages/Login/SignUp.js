@@ -15,6 +15,7 @@ const SignUp = () => {
 
     const [UserName, setUserName] = useState("");
     const [Password, setPassword] = useState("");
+    const [FullName, setFullName] = useState("");
     const [SecretKey, setSecretKey] = useState("");
     const [AuthStatus, setAuthStatus] = useState("NotValid");
     const [Message, SetMessage] = useState("");
@@ -38,7 +39,8 @@ const SignUp = () => {
       var CheckMessage="";
       await  axios.post(`http://localhost:5000/Server/Auth/User/SignUp`,  {
         UserName:UserName,
-        Password:Password
+        Password:Password,
+        FullName:FullName
     }).then(Response=>{
         console.log(Response.data);   
         if (typeof Response.data === 'string' || Response.data instanceof String)
@@ -130,14 +132,25 @@ console.log("fetched from local->")
           sx={{  boxShadow: 4,  }}
           
         />
+         <TextField
+          id="outlined-password-input"
+          label="Full Name"
+          
+          inputProps={{
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+          }}
+          InputLabelProps={{
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+          }}
+          onChange={(e) => {
+            setFullName(e.target.value);
+          }}
+          sx={{  boxShadow: 4,  }}
+          
+        />
+         
            </div>
-               <div className='Login-Options'>
-
-               <FcGoogle className="LoginOption-Icons" />
-               <SiFacebook className="LoginOption-Icons" />
-               <AiOutlineMail className="LoginOption-Icons" />
-           </div>
-        
+              
        </div>
        
    </div>

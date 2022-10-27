@@ -36,6 +36,13 @@ const UserSchemax = new mongoose.Schema({
         unique:false,
         minlength:1
     },
+    FullName:{
+        type:String,
+        default:"Guest",
+        required:true,
+        unique:false,
+        minlength:1
+    },
     OrderHistory:[],
     Cart:[]
 });
