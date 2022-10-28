@@ -3,7 +3,7 @@ import './Payment.css';
 
 import { TextField } from "@mui/material";
 import { useNavigate, useParams } from "react-router";
-
+import axios from "axios";
 
 const Payment = () =>{
     const params = useParams();
@@ -20,9 +20,22 @@ useEffect(()=>{
     const X = JSON.parse(Temp);
     setCart(X);
   console.log("Cart Items fected from local storage", X);
-})
+},[])
   
   async function userEdit (){
+    const Port = "http://localhost:5000";
+    Cart.forEach(async product=>{
+      await axios.post(`${Port}/Products/Update/${product.ProductId}`,{
+        
+      })
+      .then(res=>{
+             
+      })
+      .catch(err=>{
+         
+      })
+    })
+    
        
   }
 

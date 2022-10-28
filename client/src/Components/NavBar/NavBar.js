@@ -39,20 +39,64 @@ const NavBar = () => {
     return s.split("").reverse().join("");
 }
 
-useEffect(()=>{
-  window.addEventListener('storage', () => {
-    // When local storage changes, dump the list to
-    // the console.
-    console.log("Local storage changed");
-    console.log(JSON.parse(window.localStorage.getItem('Cart')));
-    const items=localStorage.getItem("Cart");
-    if(items && Array.isArray(items)) setItemCount(items);
-  });
 
 
-},[])
+
+
+
  
+  useEffect(()=>{
+    const UserName = params.UserName;
+    if(!UserName){
+    let Temp = localStorage.getItem("Cart");
+     
+        
+      
+    console.log("Cart Initial -> Cart Items Fetched from Local Storage",JSON.parse(Temp));
+    
+     
+      
 
+     var Parsed;
+    if(Temp && Temp.length>0){ 
+     Parsed = JSON.parse(Temp);
+    }
+    else Parsed = [];
+    if(!Array.isArray(Parsed)){
+        Parsed = [Parsed];
+      }
+     console.log("Cart Initial -> Parsed from Cart ->",Parsed , "Of length",Parsed.length);
+    if(Parsed && Array.isArray(Parsed)) setItemCount(Parsed.length);
+    }
+
+    
+  },[])
+
+  useEffect(()=>{
+    const localStorageSetHandler = function(e) {
+      let Temp = localStorage.getItem("Cart");
+     
+        
+      
+      console.log("Cart Count -> Cart Items Fetched from Local Storage",JSON.parse(Temp));
+      
+       
+        
+  
+       var Parsed;
+      if(Temp && Temp.length>0){ 
+       Parsed = JSON.parse(Temp);
+      }
+      else Parsed = [];
+      if(!Array.isArray(Parsed)){
+          Parsed = [Parsed];
+        }
+       console.log("Cart Count -> Parsed from Cart ->",Parsed , "Of length",Parsed.length);
+      if(Parsed && Array.isArray(Parsed)) setItemCount(Parsed.length);
+    };
+    
+    document.addEventListener("itemInserted", localStorageSetHandler, false);
+  },[])
 
   return(
     <div className="NavBar-Wrapper">

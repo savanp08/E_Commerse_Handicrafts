@@ -22,25 +22,35 @@ Media=Product.Media;
 if(Product.Rating<=0) Product.Rating=1;
 
 
-async function AddToCartProduct(){
-     setCartProducts (localStorage.getItem("Cart"));
-    console.log("Cart Items Fetched from Local Storage",CartProducts);
+async function AddToCartProduct(Product){
     Product.Quantity = Count;
-    
-    if(!CartProducts || !Array.isArray(CartProducts) ){ 
-     setCartProducts(new Array([Product]));
+    //  localStorage.setItem("Cart",JSON.stringify(Product));
+
+      let Temp = localStorage.getItem("Cart");
+     
+        
       
-    }
-    if(Array.isArray(CartProducts) && CartProducts.length<=0 ) setCartProducts(new Array([Product]));
-    if(CartProducts &&(typeof myVar === 'string' || CartProducts instanceof String)){
-       setCartProducts(JSON.parse(CartProducts));
-       setCartProducts(CartProducts.push(Product));
-    }
-   
+    console.log("Cart Items Fetched from Local Storage",JSON.parse(Temp));
     
-    localStorage.setItem("Cart",JSON.stringify(CartProducts));
-    console.log("Cart Items Added to Local Storage",JSON.stringify(CartProducts));
-    localStorage.clear();
+     
+      
+
+     var Parsed;
+    if(Temp && Temp.length>0){ 
+     Parsed = JSON.parse(Temp);
+    }
+    else Parsed = [];
+    if(!Array.isArray(Parsed)){
+        Parsed = [Parsed];
+      }
+    if(Parsed && Array.isArray(Parsed)){
+        Parsed.push(Product);
+    }
+     console.log("Parsed from Cart ->",Parsed , "Of length",Parsed.length);
+    console.log("Cart Items Added to Local Storage",JSON.stringify(Parsed));
+    window.localStorage.setItem("Cart",JSON.stringify(Parsed));
+    
+   
 }
 
 

@@ -29,6 +29,7 @@ const RoutesComponent =()=>{
             <Route exact path="/Payment/:Total" element={ <Payment/> } />
              <Route exact path="/Acknoledgemnt" element = { <Acknoledgemnt/>  }  />
              <Route exact path="/Shop" element={<Home/>} />
+             <Route exact path="/Payment" element={ <Payment/> } />
 
             <Route exact path="/User/:UserName" element={ <Admin/> } />
             <Route exact path="/Shop/:UserName" element={<Home/>} />

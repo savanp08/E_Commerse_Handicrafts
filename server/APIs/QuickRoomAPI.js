@@ -14,7 +14,7 @@ QuickRoomRouter.post('/Message/add/:RoomId', async (req,response)=> { console.lo
     //console.log("Message addd tried",req.body);
   const RoomId=req.body.RoomId;
   var NewMessage = req.body;
-await QuickRoomSchema.findOneAndUpdate(
+await QuickRoomSchema.findOneAndUpdate( 
     {RoomId:RoomId},
    {$push:{ Messages : NewMessage } } 
 )

@@ -71,7 +71,9 @@ console.log("fetched from local->")
  await axios.get('http://localhost:5000/Server/Auth/TokenValidate', {headers:{"authorization" : `Bearer ${token}`  }}).then(Response=>{
         
       if(Response.data.resval === "TokenVerified")
-      { window.location.replace(`/Shop/${UserName}`);
+      { 
+        localStorage.setItem('UserName', JSON.stringify(UserName));
+        window.location.replace(`/Shop/${UserName}`);
         
        
       }

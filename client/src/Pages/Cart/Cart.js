@@ -14,17 +14,68 @@ const Cart = () =>{
     const [Products,setProducts] = useState(new Map());
     const [Cart,setCart] = useState([]);
 const [QuantityList,setQuantityList] = useState(new Map());
-     useEffect(()=>{
-        const Port="http://localhost:5000";
-           axios.get(`${Port}/Products/get`)
-           .then(res=>{
-            console.log("ProductList fetched->",res.data);
-            setProductList(res.data);
-           })
-           .catch(err=>{
-            console.log("ProductList error->",err);
-           })
-     },[])
+    //  useEffect(()=>{
+    //     const Port="http://localhost:5000";
+    //        axios.get(`${Port}/Products/get`)
+    //        .then(res=>{
+    //         console.log("ProductList fetched->",res.data);
+    //         setProductList(res.data);
+    //        })
+    //        .catch(err=>{
+    //         console.log("ProductList error->",err);
+    //        })
+    //  },[])
+
+
+    async function verifyToken(){
+      const UserName = JSON.parse(localStorage.getItem("UserName"));
+      console.log("UserName = " + UserName);
+      const token = localStorage.getItem(`User ${UserName}`);
+      console.log("fetched from local->");
+      console.log(token);
+      if (token)
+        await axios
+          .get("http://localhost:5000/Server/Auth/TokenValidate", {
+            headers: { authorization: `Bearer ${token}` },
+          })
+          .then((Response) => {
+            if (Response.data.resval === "TokenVerified") {
+              
+              window.location.replace(`/Payment/${UserName}/${Total}`);
+            }
+            else {
+              window.location.replace(`/Login`);
+            }
+            console.log(Response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
+
+
+    useEffect(()=>{
+      let Temp = localStorage.getItem("Cart");
+         
+            
+          
+      console.log("For Cart -> Cart Items Fetched from Local Storage",JSON.parse(Temp));
+      
+       
+        
+    
+       var Parsed;
+      if(Temp && Temp.length>0){ 
+       Parsed = JSON.parse(Temp);
+      }
+      else Parsed = [];
+      if(!Array.isArray(Parsed)){
+          Parsed = [Parsed];
+        }
+      setProductList(Parsed);
+       console.log("For Cart -> Parsed from Cart ->",Parsed , "Of length",Parsed.length);
+      console.log("For Cart -> Cart Items Added to Local Storage",JSON.stringify(Parsed));
+    },[])
 
   useEffect(()=> {
   setQuantityList([]);
@@ -75,12 +126,7 @@ console.log("Quantity List -> ", QuantityList);
             </div>
             <div className="Cart-CheckOut-Button"
             onClick={()=>{
-                if(UserName && UserName.length>0){
-                window.location.replace(`/Payemnt/${UserName}/${Total}`)
-                }
-                else{
-                    window.location.replace('/Login');
-                }
+                verifyToken();
             }}
             >
                 Buy Now

@@ -67,6 +67,7 @@ const Login = () => {
             try {
               console.log(UserName);
               localStorage.setItem(`User ${UserName}`, accessToken);
+              
             } catch (error) {
               console.log("error->");
               console.log(error);
@@ -94,6 +95,7 @@ const Login = () => {
           })
           .then((Response) => {
             if (Response.data.resval === "TokenVerified") {
+              localStorage.setItem('UserName', JSON.stringify(UserName));
               window.location.replace(`/Shop/${UserName}`);
             }
             console.log(Response.data);

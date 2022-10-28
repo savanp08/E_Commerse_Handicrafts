@@ -6,6 +6,19 @@ import NavBar, { RespNavBar } from './Components/NavBar/NavBar.js';
 import FOoterStand from './Components/Footer/Footer';
 
 function App() {
+
+  const originalSetItem = localStorage.setItem;
+
+localStorage.setItem = function(key, value) {
+  const event = new Event('itemInserted');
+
+  event.value = value; // Optional..
+  event.key = key; // Optional..
+
+  document.dispatchEvent(event);
+
+  originalSetItem.apply(this, arguments);
+}; 
   return (
     <div className="App-Wrapper">
        <Router>
