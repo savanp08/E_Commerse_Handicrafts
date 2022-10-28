@@ -1,0 +1,164 @@
+.Admin-Wrapper{
+    width:100%;
+    flex:1;
+    display:flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    position: relative;
+   
+}
+.Top-Pane{
+    width:100%;
+    flex:0.54;
+    min-height: 50vh;
+    background-image: url("https://images.unsplash.com/photo-1514168016930-2bf843767462?ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8&ixlib=rb-1.2.1&w=1000&q=80");
+
+ transform: translate3d(0px, 0px, 0px);
+
+}
+.Top-Pane img{
+  width:100%;
+    flex:0.44;
+    max-height: 44vh;
+    
+}
+
+.Raised-Pane{
+  width:87.2%;
+  flex:1;
+  background-color: white;
+  transform: translateY(-13vh);
+  display:flex;
+  align-items: center;
+  flex-flow: column nowrap;
+  box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    border-radius: 6px;
+   
+}
+.Avatar-Holder{
+  position: relative;
+  width:13vmax;
+    height: 6vmax;
+    
+  
+}
+.Avatar{
+    border-radius: 50%;
+    width:12vmax;
+    height: 12vmax;
+    transform: translate(0%,-60%);
+}
+
+.User-Name-Holder{
+  width:100%;
+  margin-top: 15px;
+  display:flex;
+  flex-flow: column nowrap;
+}
+.User-Name{
+  text-align: center;
+  font-size: 4.1vmin;
+  font-weight: 600;
+}
+.Basic-Info-Text{
+  text-align: center;
+  font-size: 3vmin;
+  font-weight: 450;
+}
+
+.Not-Mentioned{
+  color:red;
+}
+.Mentioned{
+color:green;
+}
+.Donation-Info-Component-Text{
+  
+  font-size: 3vmin;
+  font-weight: 550;
+  text-align: center;
+}
+.Address-Break{
+  justify-self: center;
+}
+.Admin-Story-Wrapper{
+  width:80%;
+  display: flex;
+  flex-flow: column nowrap;
+  flex:1;
+  margin : 1vw 2vh;
+  padding: 2vw 4vh;
+  box-shadow: 3px 3px 8px hsl(0,0%,70%),3px 3px 8px hsl(0,30%,70%);
+  border-radius: 13px;
+}
+
+.Admin-Story-Container{
+  display: flex;
+  flex-flow: column nowrap;
+  flex:1;
+  border-radius: 13px;
+}
+.Row-Holder1{
+display: flex;
+flex-flow: row wrap;
+width: 100%;
+justify-content: space-around;
+}
+.ASI{
+  width:100%;
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 12px;
+}
+.Admin-Story-Title{
+  font-size: 4vmin;
+  font-weight: 500;
+  max-width: 500px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  color:rgba(0, 217, 255,0.8);
+}
+
+.Admin-Story-Description{
+  flex:1;
+  font-size: 3vmin;
+  font-weight: 400;
+  color:rgb(122, 120, 120);
+  font-family: sans-serif;
+  word-spacing: 2mm;
+}
+
+.Visiblex{
+  background-color: green;
+  
+}
+.Hiddenx{
+  background-color: red;
+}
+.Status-Button{
+cursor: pointer;
+width:100%;
+  max-width: 120px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px hsl(0,0%,70%);
+display:flex;
+flex-flow: column;
+align-items: center;
+}
+
+.Status-Text{
+  font-size: 25px;
+  font-weight: 500;
+  color: black;
+  display:flex;
+  text-align: center;
+}
+
+.InsideSold-Icon{
+    width: 70vw;
+}
+.AddProduct-UserPage{
+    width: 100%;
+    margin-bottom: 18px;
+}

@@ -71,7 +71,7 @@ console.log("fetched from local->")
  await axios.get('http://localhost:5000/Server/Auth/TokenValidate', {headers:{"authorization" : `Bearer ${token}`  }}).then(Response=>{
         
       if(Response.data.resval === "TokenVerified")
-      { window.location.replace(`/User/${UserName}`);
+      { window.location.replace(`/Shop/${UserName}`);
         
        
       }
@@ -100,7 +100,7 @@ console.log("fetched from local->")
     <div className="LoginPage-Wrapper">
    <div className="Login-Wrapper">
        <div className='Login-Container'>
-           <div className='User-Pass-Container'>
+           <div className='User-Pass-Container SignUpContainer'>
            <TextField id="outlined-basic" 
            label="UserName" 
            variant="outlined" 
@@ -108,10 +108,14 @@ console.log("fetched from local->")
             CheckUserName(e);
           }}
           inputProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 
+              , color:'white'
+            },
           }}
           InputLabelProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5
+              , color:'white'
+            },
           }}
           sx={{boxShadow: 4 }}
            />
@@ -121,10 +125,15 @@ console.log("fetched from local->")
           label="Password"
           type="password"
           inputProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 
+            
+              , color:'white'
+            },
           }}
           InputLabelProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 
+              , color:'white'
+            },
           }}
           onChange={(e) => {
             CheckPassword(e);
@@ -137,10 +146,14 @@ console.log("fetched from local->")
           label="Full Name"
           
           inputProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 
+              , color:'white'
+            },
           }}
           InputLabelProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 
+              , color:'white'
+            },
           }}
           onChange={(e) => {
             setFullName(e.target.value);
@@ -148,6 +161,8 @@ console.log("fetched from local->")
           sx={{  boxShadow: 4,  }}
           
         />
+
+        
          
            </div>
               
@@ -159,6 +174,9 @@ console.log("fetched from local->")
    className="LoginSubmit"
    onClick={(e) => {
     submitLogin(e);
+  }}
+  sx={{
+    marginTop:'40px'
   }}
    >SignUp</Button>
 </div>

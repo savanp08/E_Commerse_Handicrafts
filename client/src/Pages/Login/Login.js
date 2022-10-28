@@ -94,7 +94,7 @@ const Login = () => {
           })
           .then((Response) => {
             if (Response.data.resval === "TokenVerified") {
-              window.location.replace(`/${UserType}/${UserName}`);
+              window.location.replace(`/Shop/${UserName}`);
             }
             console.log(Response.data);
           })
@@ -123,27 +123,6 @@ const Login = () => {
     window.location.replace(`QuickRoom/QuickUser/${roomId}/${tempUserId}/${tempName}`);
   }
 
-
-
-
-
-  useEffect(()=>{
-
-   var quickButton = document.getElementById("QuickRoom-LoginButton");
-    document.addEventListener('click',function(e){
-      var container = document.getElementById("QuickRoom-Login-Div");
-      console.log("Event of click->",e);
-    if (e.target!==container && !container.contains(e.target) && e.target!==quickButton) 
-    {console.log("Detected click outside quick room div")
-      if(container && !container.classList.contains("Hide"))
-      container.classList.add("Hide");
-    }
-})
-  },[])
-
-
-
-
   return (
     <div className="LoginPage-Wrapper">
    <div className="Login-Wrapper">
@@ -159,7 +138,9 @@ const Login = () => {
             style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
           }}
           InputLabelProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5
+            , color:'white'
+            },
           }}
           sx={{boxShadow: 4 }}
            />
@@ -172,7 +153,9 @@ const Login = () => {
             style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
           }}
           InputLabelProps={{
-            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
+            style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 
+              , color:'white'
+            },
           }}
           onChange={(e) => {
             CheckPassword(e);
@@ -181,46 +164,7 @@ const Login = () => {
           
         />
            </div>
-          <div>
-          <FormControl>
-          <InputLabel
-            id="demo-simple-select-label"
-            sx={{
-              width: "600px",
-              display: "flex",
-              flexFlow: "row wrap",
-              alignItems: "center",
-              justifyContent: "space-around",
-            }}
-          >
-            UserType
-          </InputLabel>
-          <Select
-            sx={{ width: "150px", marginBottom: "3vh" }}
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={UserType}
-            label="User Type"
-            inputProps={{
-              style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
-            }}
-            InputLabelProps={{
-              style: { fontSize: 18, wordSpacing: 17, lineHeight: 1.5 },
-            }}
-            onChange={(e) => {
-              setUserType(e.target.value); const UserTypeX=e.target.value; console.log(UserType); console.log(UserTypeX);
-             
-            }}
-          >
-            <MenuItem value={"User"}>User</MenuItem>
-            <MenuItem value={"Seller"}>Seller</MenuItem>
-          </Select>
-        </FormControl>
-       
-       </div>
-       </div>
-   </div>
-   <div className="LoginSubmit-Div">
+           <div className="LoginSubmit-Div">
    <Button variant="contained"
    className="LoginSubmit"
    onClick={(e) => {
@@ -231,17 +175,23 @@ const Login = () => {
     submitLogin(e);
   }}
    >Login</Button>
-</div>
-<p id="Login-HelperText-Overall"></p>
-<Button variant="contained" className="SignUp-Button"
+   <span className="CreateAccount-Button"
 onClick = {()=>{
   window.location.replace("/SignUp");
 }}
 sx={{
  marginTop:'4vh'
 }}
->SignUp
-</Button>
+>Create New Account
+</span>
+</div>
+<p id="Login-HelperText-Overall"></p>
+
+
+
+       </div>
+   </div>
+  
 </div>
   );
 }

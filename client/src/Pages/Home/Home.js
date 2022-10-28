@@ -2,7 +2,7 @@ import React, {useState, useEffect } from "react";
 import './Home.css';
 import '../../Components/common.css';
 import '../../Components/common.scss';
-import { useNavigate }  from 'react-router-dom';
+import { useNavigate, useParams }  from 'react-router-dom';
 import axios from 'axios';
 import FOoterStand from "../../Components/Footer/Footer";
 import Carousel from 'react-bootstrap/Carousel';import ProductCard from "../../Components/ProductCard/ProductCard";
@@ -12,36 +12,44 @@ import Carousel from 'react-bootstrap/Carousel';import ProductCard from "../../C
 
 const Home =() =>{
     const history = useNavigate();
+    const params= useParams();
+    const UserName = params.UserName || "";
    const catagories =[ 
-    {name:'Decor' , img:"https://i.pinimg.com/originals/53/82/df/5382df3f498ec0ed31ed8bef6f68fc52.jpg"},
-    { name:"Painting", img:'https://m.media-amazon.com/images/I/81nh7yEGiHL._SX355_.jpg' },
+    {name:'Decor' , img:"https://i.pinimg.com/originals/53/82/df/5382df3f498ec0ed31ed8bef6f68fc52.jpg"  ,url:"/Query/Decor"},
+    { name:"Painting", img:'https://m.media-amazon.com/images/I/81nh7yEGiHL._SX355_.jpg',url:"/Query/Painting" },
     {
         name:"Glass crafts",
         img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF7d6K1XSvqF1OqhqPUZbZVazgIqUXd8gIKYzyY0hWmcd4LUbPXcERkqTidiiauEeYvdM&usqp=CAU"
-
+        ,url:"/Query/Glass Crafts"
     },
     {
       name:'Jewelry',
       img:'https://i.pinimg.com/originals/36/e0/26/36e0265095be7af716ab31f847e65c7d.jpg'
+      ,url:"/Query/Jewelry"
     },
     {
         name:'Clothes',
         img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_5gMkWHsL5fVrAZx2Ux9LTZpJw0ruHUJJWw&usqp=CAU'
-    },
+        ,url:"/Query/Clothes"
+      },
     {
         name:'Weveing',
         img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-9rIfRis0mjs-GU-vZd4W9eWP4tiyq6oD-Q8REvQi4_XBnCB71S36j0VrtrPck4fbAMs&usqp=CAU'
+        ,url:"/Query/weveing"
     },
     {
         name:'Paper crafts',
+        url:"/Query/Paper Crafts",
         img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFlUixthxSiEkiWzmB9FWso0-jI5ZC9M2hnQ&usqp=CAU'
     },
     {
         name:'Wood crafts',
+        url:"/Query/Wood Crafts",
         img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHwhRyz1i6k5lk0IJMkWxWfudOwXoROAfT1w&usqp=CAU'
     },
     {
         name:'Metal crafts',
+        url:"/Query/Metal Crafts",
         img:'https://3.bp.blogspot.com/-x39C5WIdpe8/VnigqzS9S8I/AAAAAAAABNA/wjfIJYFYOI0/s1600/pebarti.jpg'
     }
      ]
@@ -92,7 +100,11 @@ const Home =() =>{
             catagories.map(cat=>{
                 return(
                     <div className="Category-ele-Wrapper">
-                      <img src={cat.img} alt="err" className="category-ele-avatar"  />
+                      <img src={cat.img} alt="err" className="category-ele-avatar"  
+                      onClick={()=>{
+                        window.location.replace(`${cat.url}/${UserName}`)
+                      }}
+                      />
                       <span className="category-ele-name" >
                         {cat.name}
                       </span>
@@ -143,11 +155,9 @@ const Home =() =>{
                    MostRecent.map(product=>{ count++;
                     if(count<=10) {
                     return(
-                      <div  onClick={()=>{
-                        window.location.replace(`/Description/${product.ProductId}`)
-                      }} >
+                      
                         <ProductCard product={product} />
-                      </div>
+                      
                     )
                     }
                    })

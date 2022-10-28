@@ -3,11 +3,14 @@
     flex-flow: row wrap;
     width: 300px;
     min-width: 200px;
-    box-shadow: 0px 5px 5px rgb(143, 136, 136) ;
+   
     border-radius: 5px;
     margin-bottom: 30px;
     margin-right: 19px;
     cursor: pointer;
+    background-color: transparent;
+    perspective: 1000px;
+    height: 400px;
 }
 
 .ProductCard-LeftWrapper{
@@ -51,3 +54,56 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.ProductCard-FrontSideWrapper{
+position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+   height: 100%;
+   background: white;
+}
+
+.ProductCard-BackSideWrapper{
+    position: absolute;
+    backface-visibility: hidden;
+   width: 100%;
+   height: 100%;
+   background: rgb(29, 95, 170);
+   transform: rotateY(180deg);
+}
+.ProductCard-Container{
+    position: relative;
+    width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-flow: row wrap;
+  box-shadow: 0px 5px 5px rgb(143, 136, 136) ;
+  border-radius: 5px;
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.ProductCard-Wrapper:hover .ProductCard-Container{
+    transform: rotateY(180deg);
+}
+.ProductCard-BackSide-TopWrapper{
+    width: 280px;
+
+}
+.ProductCard-BackSide-ProductDescription{
+width: 280px;
+white-space: wrap;
+overflow: hidden;
+text-overflow: clip;
+height: 150px;
+overflow-y: hidden;
+overflow-x: hidden;
+}
+.ProductCard-BackSide-BottomWrapper{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+

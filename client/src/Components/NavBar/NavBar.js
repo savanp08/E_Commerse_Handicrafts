@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from "react";
 import './NavBar.css'
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -24,10 +24,22 @@ const NavBar = () => {
   const [itemCount, setItemCount] = useState(0);
   const history = useNavigate();
   async function searchFun(){
-    history(`/Query/${SearchQuery}`);
+    window.location.replace(`/Query/${SearchQuery}`);
   }
+  
+  const params = useParams();
 
+  const [TempStatus, setTempStatus] =useState(false);
 
+  function funRouteToProfile (){
+    
+                
+  }
+  function reverse(s){
+    return s.split("").reverse().join("");
+}
+
+useEffect(()=>{
   window.addEventListener('storage', () => {
     // When local storage changes, dump the list to
     // the console.
@@ -36,6 +48,10 @@ const NavBar = () => {
     const items=localStorage.getItem("Cart");
     if(items && Array.isArray(items)) setItemCount(items);
   });
+
+
+},[])
+ 
 
 
   return(
@@ -73,23 +89,58 @@ const NavBar = () => {
     <div className="NavBar-AccountOptions">
   <AccountOptions />
     </div>
+    <div className="NavBar-CartIcon"
+    onClick={()=>{
+      var UserName = params.UserName || "";
+                
+      console.log("Params",params);
+      console.log("Url",window.location.href);
+      const url= window.location.href;
+      const len= url.length;
+      var str="";
+      for(var i=len-1;i>=0;i--){
+        if(url[i]==='/') break;
+        str+=url[i];
+      }
+      if(str.length>1 && str!=="Shop" || str!=="localhost:3000" || str!=="Query"){
+        UserName=reverse(str);
+      }
+      console.log(UserName , " -> UserName");
+      window.location.replace(`/Cart/${UserName}`)
+    }}
+    >
     <Badge color="secondary" badgeContent={itemCount}
   
     >
           <ShoppingCartIcon 
             sx={{
               width:35,
-              height:35
+              height:35,
+              cursor:'pointer'
             }}
-          />{" "}
+          />
         </Badge>
+        </div>
     </div>
   )
 
 }
 
 const AccountOptions = () =>{
+
+  const history = useNavigate();
+  const params = useParams();
+
   const [TempStatus, setTempStatus] =useState(false);
+
+  function funRouteToProfile (){
+    
+                
+  }
+  function reverse(s){
+    return s.split("").reverse().join("");
+}
+
   return(
     <div className="AccountOptions-Wrapper">
        <AccountCircleIcon 
@@ -105,7 +156,28 @@ const AccountOptions = () =>{
             }}
             />
             <div className={"AccountOptionsMenuContainer" + (TempStatus===true? "" : " Hide")} id="AccountOptionsMenuContainer" >
-              <div className="AccountOptionsEle" >
+              <div className="AccountOptionsEle" 
+              onClick={()=>{
+                var UserName = params.UserName || "";
+                
+                console.log("Params",params);
+                console.log("Url",window.location.href);
+                const url= window.location.href;
+                const len= url.length;
+                var str="";
+                for(var i=len-1;i>=0;i--){
+                  if(url[i]==='/') break;
+                  str+=url[i];
+                }
+                if(str.length>1 && str!=="Shop"){
+                  UserName=reverse(str);
+                }
+                console.log(UserName , " -> UserName");
+                window.location.replace(`/User/${UserName}`);
+                funRouteToProfile()
+                
+              }}
+              >
                 Profile
               </div>
               <div className="AccountOptionsEle" >
@@ -131,7 +203,7 @@ const RespNavBar = () =>{
   const [SearchQuery, setSearchQuery] = useState();
   const history = useNavigate();
   async function searchFun(){
-    history(`/Query/${SearchQuery}`);
+    window.location.replace(`/Query/${SearchQuery}`);
   }
 
     return(

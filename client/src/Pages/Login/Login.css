@@ -1,5 +1,4 @@
 .LoginPage-OverAll{
-background-image: url("https://images.template.net/wp-content/uploads/2014/10/background-webdesign-patterns.jpg");
 width: 100vw;
 height: 100vh;
 display: flex;
@@ -7,66 +6,44 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 align-content: center;
-background-repeat: no-repeat;
-background-size: cover;
 }
 
 .Login-Wrapper{
     display:flex;
     width: 400px;
-    height: 400px;
+    height: 300px;
     flex-flow: column wrap;
     align-items: center;
     justify-content: space-around;
     align-items: center;
     position: relative;
+    background-color: rgb(85, 132, 173);
+    box-shadow: 5px 5px 5px rgb(65,65,65);
+    border-radius: 5px;
 }
 .Login-Container{
     display:flex;
     width: 100%;
-    height: 100%;
+    height: 300px;
     flex-flow: column wrap;
     align-items: center;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(59, 57, 57);
     box-shadow: 5px 25px 25px rgb(214, 197, 197) , 15px -15px -15px rgb(231, 216, 216) ;
 
 }
 
 .User-Pass-Container{
     display:flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     justify-content: space-around;
     align-items: center;
-    flex:0.47;
-    border: 2px solid black;
-    background-color: white;
+   height: 150px;
+   background-color: rgb(85, 132, 173);
     width:300px;
     
 }
-.Login-Options{
-    border-color: black;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-    flex:0.2;
-    width:170px;
-}
-.LoginOption-Icons{
-    height:30px;
-    width:30px;
-    cursor: pointer;
-}
 
-.OtherRoom-Wrapper{
-    display:flex;
-    flex-flow: column wrap;
-    justify-content: space-around;
-    align-items: center;
-    flex:0.33;
-}
 .QuickRoom-Container > .MuiFormControl-root{
     display:none;
 }
@@ -74,25 +51,8 @@ background-size: cover;
 .SavedRoom-Container > .MuiFormControl-root{
     display:none;
 }
-
-.Show-Login{
-    width:60vw;
-     height:50vh;
-      display:flex;
-      flex-flow: column nowrap;
-      justify-content: space-around;
-      align-items: center;
-      align-content: center;
-     margin-top: -43vh;
-     margin-left: -20vw;
-     z-index: 10000;
-    justify-self: center;
-    align-self: center;
-     position: absolute;
-     background-color: white;
-}
 .LoginSubmit-Div > .MuiButtonBase-root {
-   margin-top: 5vh;
+   
 }
 
 .LoginPage-Wrapper{
@@ -101,5 +61,24 @@ background-size: cover;
     justify-content: center;
     align-content: center;
     align-items: center;
+    height: 100%;
+    background-image: url("https://www.handsofgold.in/wp-content/uploads/2021/10/RUM06696-1.jpg");
+    background-size: cover;
+    width: 100%;
 }
 
+.LoginSubmit-Div{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 150px;
+}
+
+.CreateAccount-Button{
+    width: 150px;
+    margin-top: 5px; 
+    cursor: pointer;
+}
+
+.SignUpContainer{
+    height: 220px;
+}

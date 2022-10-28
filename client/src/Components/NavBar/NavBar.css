@@ -5,9 +5,10 @@
     align-items: center;
     align-content: center;
     width: 100%;
-    background-color: rgb(53, 77, 98);
+    background-color: rgb(195, 143, 198);
     height: 100%;
     box-shadow: 5px 5px 5px rgb(65, 65, 65);
+    min-height: 70px;
 }
 .NavBarResp-Wrapper{
 display: none;
@@ -118,6 +119,7 @@ border-radius: 5px;
 }
 .AccountOptions-Wrapper{
     position: relative;
+    z-index: 1000;
 }
 .AccountOptionsEle{
     height: 30px;

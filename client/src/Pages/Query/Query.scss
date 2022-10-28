@@ -6,14 +6,20 @@
     justify-content: space-around;
     overflow-y: scroll;
    overflow-x: hidden;
+   align-items: center;
 }
 .QueryHeader{
 display: flex;
 margin-bottom: 30px;
+width: 100%;
+border-bottom: 3px black solid;
 }
 
 .Query-HeaderTitle{
-
+text-align: center;
+font-size: 29px;
+font-weight: 550;
+margin-left: 15vw;
 }
 
 .QueryCOntainer{

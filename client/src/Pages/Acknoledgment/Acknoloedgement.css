@@ -1,0 +1,41 @@
+.AcknoledgemntPageWrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Acknoledgemnt-Container{
+    width: 500px;
+    height: 120px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.Acknoledgemnt-Details{
+font-size: 40px;
+font-weight: 450;
+color: rgb(92, 255, 47);
+}
+
+
+.ContinueShoppingButton{
+    width: 220px;
+    height: 52px;
+    font-weight: 20px;
+    font-weight: 400;
+    text-align: center;
+    background-color: rgb(0, 191, 255);
+    box-shadow: 4px 4px 10px rgb(124, 124, 171);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}  
+

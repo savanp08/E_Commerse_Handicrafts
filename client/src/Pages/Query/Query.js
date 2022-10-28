@@ -61,11 +61,9 @@ useEffect(()=>{
             {
               FilteredProducts.map(product =>{
                 return(
-                  <div  onClick={()=>{
-                    window.location.replace(`/Description/${product.ProductId}`)
-                  }} >
+                 
                     <ProductCard product={product} />
-                  </div>
+                  
                 )
               })
             }

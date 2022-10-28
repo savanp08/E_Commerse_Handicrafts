@@ -42,7 +42,7 @@ const UserSchemax = new mongoose.Schema({
         required:true,
         unique:false,
         minlength:1
-    },
+    }, 
     OrderHistory:[],
     Cart:[]
 });
