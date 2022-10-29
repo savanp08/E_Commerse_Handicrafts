@@ -61,7 +61,8 @@ Offers:[
 ],
 Media:[],
 Quantity:{
-    type:Number
+    type:Number,
+    default:0
 },
 SellerId:{
     type:String,
@@ -69,6 +70,10 @@ SellerId:{
     required:true,
     unique:false,
     minlength:1
+},
+ProductsSold:{
+    type:Number,
+    default:0
 }
 });
 

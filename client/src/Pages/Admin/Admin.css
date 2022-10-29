@@ -162,3 +162,20 @@ align-items: center;
     width: 100%;
     margin-bottom: 18px;
 }
+
+.RequestSubmit-HelperText{
+
+}
+.SubmitElemenets-Request-Body{
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 120px;
+}
+.AddProductButton-X{
+  width: 140px;
+  height: 30px;
+  font-size: larger;
+}

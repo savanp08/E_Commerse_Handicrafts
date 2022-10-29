@@ -156,7 +156,7 @@ const Home =() =>{
                     if(count<=10) {
                     return(
                       
-                        <ProductCard product={product} />
+                        <ProductCard product={MostRecent[MostRecent.length-count]} />
                       
                     )
                     }

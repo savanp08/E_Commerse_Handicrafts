@@ -97,7 +97,7 @@ width: 280px;
 white-space: wrap;
 overflow: hidden;
 text-overflow: clip;
-height: 150px;
+height: 100px;
 overflow-y: hidden;
 overflow-x: hidden;
 }
@@ -107,3 +107,31 @@ overflow-x: hidden;
     align-items: center;
 }
 
+.InProductCardQuantityWrapper{
+    flex-flow: row wrap;
+    width: 300px !important;
+}
+
+._300px{
+    width: 300px !important;
+}
+.ProductCart-ViewProductButton{
+    margin-top: 10px;
+}
+
+.CustomButton-GeneralProperties{
+    background-color: gold !important;
+    border-radius: 7px;
+    box-shadow: 4px 4px 3px rgb(143, 136, 136);
+    cursor: pointer;
+    text-align: center;
+}
+
+.CartCard-Backside-Text{
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+}
+.CartMainText{
+    text-align: center;
+}

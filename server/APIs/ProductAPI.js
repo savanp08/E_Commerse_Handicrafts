@@ -150,7 +150,7 @@ ProductRouter.get('/get',async(req,response)=>{
   console.log("Fetch products query for ",query);
   const ans = await ProductSchema.find({})
   .then(result=>{
-  console.log("Fetched Products => ".result);
+  console.log("Fetched Products");
   response.status(200).json(result);
   }) 
   .catch(err=>{
@@ -164,7 +164,7 @@ ProductRouter.get('/Specific/:ProductId',async(req,response)=>{
   console.log("Fetch products query for ",query);
   const ans = await ProductSchema.findOne({ProductId:query})
   .then(result=>{
-  console.log("Fetched Products => ".result);
+  console.log("Fetched Products => ");
   response.status(200).json(result);
   }) 
   .catch(err=>{
@@ -173,12 +173,13 @@ ProductRouter.get('/Specific/:ProductId',async(req,response)=>{
   })
 });
 
-ProductRouter.post("Update/:ProductId" ,async(req,response)=>{
-  const query = req.params.ProductId;
-  console.log("update products query for ",query);
-  await ProductSchema.replaceOne({ProductId:query}, req.body.Product )
+ProductRouter.post("/Update/:_id" ,async(req,response)=>{
+  const query = req.params._id;
+   console.log("Recived Request from Id" , query, "to update Quantity and soldproducts",req.body.Product);
+  // console.log("update products query for ",query);
+  await ProductSchema.updateOne({__id:query}, {$set : { ProductsSold: req.body.Product.Quantity }} )
   .then(res=>{
-    console.log("update products query response",res);
+    console.log("update products query response");
     response.status(200).json(res);
   })
   .catch(err=>{

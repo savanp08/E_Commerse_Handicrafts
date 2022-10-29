@@ -87,13 +87,19 @@ return (
                 <div className="ProductCard-BackSide-ProductSeller">
                    Product By : {Product.SellerId}
                    </div>
+                   <div className="ProductCard-BackSide-ProductSeller">
+                   Quantity : {Product.Quantity}
+                   </div>
+                   <div className="ProductCard-BackSide-ProductSeller">
+                   Sold : {Product.ProductsSold}
+                   </div>
                    <div className="ProductCard-BackSide-ProductDescription">
                     {Description[0]}
                    </div>
             </div>
             <div className="ProductCard-BackSide-BottomWrapper">
-            <div className="Description-Top-Right-Bottom">
-            <div className="DescriptionPage-QuantityWrapper">
+            <div className="Description-Top-Right-Bottom _300px">
+            <div className="DescriptionPage-QuantityWrapper InProductCardQuantityWrapper">
             <div className="DescriptionPage-QuantityButtons Incr"
             onClick={()=>{
                setCount(Count+1);
@@ -112,9 +118,7 @@ return (
             >
             -
             </div>
-            </div>
-         <div className="DescriptionPage-AddToCart">
-            <span className="Description-AddCart-Button"  
+            <span className="Description-AddCart-Button CustomButton-GeneralProperties"  
             onClick={()=>{
                 AddToCartProduct(Product);
               
@@ -122,7 +126,10 @@ return (
             >
                Add To Cart
             </span>
-            <div className="Description-AddCart-Button" onClick={()=>{
+            </div>
+         <div className="DescriptionPage-AddToCart">
+            
+            <div className="Description-AddCart-Button ProductCart-ViewProductButton CustomButton-GeneralProperties" onClick={()=>{
             window.location.replace(`/Description/${Product.ProductId}`)
           }} >
             View Product

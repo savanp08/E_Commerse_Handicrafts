@@ -110,6 +110,17 @@ console.log("Quantity List -> ", QuantityList);
     },[])
   
 
+    async function changeCartData(){
+      for(var i=0;i<ProductList.length;i++){
+        console.log("chnaging qunatity of ",ProductList[i].FullName, 'from ',ProductList[i].Quantity,  "to ", QuantityList.get(ProductList[i].ProductId));
+        ProductList[i].Quantity = QuantityList.get(ProductList[i].ProductId);
+       
+      }
+      const temp  =JSON.stringify(ProductList);
+      window.localStorage.setItem("Cart", temp);
+      verifyToken();
+    }
+
     return(
         <div className="CartWrapepr">
             
@@ -118,18 +129,28 @@ console.log("Quantity List -> ", QuantityList);
             Products In Your Cart:
           </div>
           <div className="Cart-CheckOutWrapper">
-            <div className="Cart-CheckOut-Title">
+            <div className="Cart-CheckOut-Title CartMainText">
                 Sub Total:
             </div>
-            <div className="Cart-CheckOut-SumTotal">
+            <div className="Cart-CheckOut-SumTotal CartMainText">
                  Rs: {Total}
             </div>
-            <div className="Cart-CheckOut-Button"
+            <div className="Cart-CheckOut-Button CustomButton-GeneralProperties"
             onClick={()=>{
-                verifyToken();
+                changeCartData();
+                
             }}
             >
                 Buy Now
+            </div>
+            <div className="Cart-CheckOut-Button CustomButton-GeneralProperties"
+            onClick={()=>{
+                window.localStorage.clear();
+                
+                setProductList(new Array([]));
+            }}
+            >
+                Clear Cart
             </div>
             </div>
           </div>
@@ -149,6 +170,7 @@ console.log("Quantity List -> ", QuantityList);
                     if(Product && Product.Media && Product.Media[0])
                     Media=Product.Media;
                     if(Product.Rating<=0) Product.Rating=1;
+                    if(Product.FullName && Product.FullName.length>0)
                         return(
                             <div className="CartCard-Wrapper">
                                  <img src={Product.Media[0]} className="CartCard-LeftSide-Wrapper">

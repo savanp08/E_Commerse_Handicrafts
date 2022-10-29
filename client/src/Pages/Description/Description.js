@@ -8,7 +8,7 @@ const Description = () =>{
 
    const [Product,setProduct]=useState();
    const [Count,setCount] = useState(1);
-
+   const [DisplayReviewForm,setDisplayReviewForm] = useState(false);
    const params= useParams();
    const ProductId = params.ProductId;
    useEffect(()=>{
@@ -22,11 +22,56 @@ const Description = () =>{
       console.log("Error fetching Single Product",err);
      })
    },[])
+
+
+  const ReviewForm = () =>{
+
+  }
+
+
+  async function AddToCartProduct(Product){
+   Product.Quantity = Count;
+   //  localStorage.setItem("Cart",JSON.stringify(Product));
+
+     let Temp = localStorage.getItem("Cart");
+    
+       
+     
+   console.log("Cart Items Fetched from Local Storage",JSON.parse(Temp));
+   
+    
+     
+
+    var Parsed;
+   if(Temp && Temp.length>0){ 
+    Parsed = JSON.parse(Temp);
+   }
+   else Parsed = [];
+   if(!Array.isArray(Parsed)){
+       Parsed = [Parsed];
+     }
+   if(Parsed && Array.isArray(Parsed)){
+       Parsed.push(Product);
+   }
+    console.log("Parsed from Cart ->",Parsed , "Of length",Parsed.length);
+   console.log("Cart Items Added to Local Storage",JSON.stringify(Parsed));
+   window.localStorage.setItem("Cart",JSON.stringify(Parsed));
+   
+  
+}
+
+
+
+
 if(Product){
    if(Product.Rating<=0) Product.Rating=1;
    return(
     <div className="DescriptionWrapper">
-      <span className="Description-FullName">{Product.FullName}</span>
+      <div className ="DescriptionPage-TopDetails">
+      <div className="Description-FullName">Product: {Product.FullName}</div>
+      <div className="Description-FullName">Sold by : {Product.SellerId}</div>
+      {/* <div className="Description-FullName">{Product.FullName}</div> */}
+      </div>
      <div className="Description-Top">
        <img src={Product.Media[0]} className="Description-Top-Left">
        
@@ -63,23 +108,9 @@ if(Product){
             </div>
             </div>
          <div className="DescriptionPage-AddToCart">
-            <span className="Description-AddCart-Button"  
+            <span className="Description-AddCart-Button CustomButton-GeneralProperties"  
             onClick={()=>{
-               var CartProducts = localStorage.getItem("Cart");
-               console.log("Cart Items Fetched from Local Storage",CartProducts);
-               Product.Quantity = Count;
-               if(!CartProducts || !Array.isArray(CartProducts) || CartProducts.size()===0){ CartProducts=[Product];
-                 
-               }
-               else{
-                  CartProducts=JSON.parse(CartProducts);
-                  CartProducts.push(Product);
-               }
-              
-               
-               localStorage.setItem("Cart",JSON.stringify(CartProducts));
-               console.log("Cart Items Added to Local Storage",CartProducts);
-               localStorage.clear();
+              AddToCartProduct(Product);
             }}
             >
                Add To Cart
@@ -90,6 +121,15 @@ if(Product){
      </div>
      <div className="Description-Bottom">
       {Product.Description[0]}
+     </div>
+     <div className="Description-SubmitReviewWrapper">
+      <div className="Description-SubmitReviewButton CustomButton-GeneralProperties"
+      onClick={()=>{
+         setDisplayReviewForm(true);
+      }}
+      >
+         Submit Review
+      </div>
      </div>
     </div>
    )

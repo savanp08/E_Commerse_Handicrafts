@@ -233,9 +233,7 @@ const AccountOptions = () =>{
               <div className="AccountOptionsEle" >
                 See History
               </div>
-              <div className="AccountOptionsEle" >
-                Related Search
-              </div>
+              
             </div>
     </div>
   )

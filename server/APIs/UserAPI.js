@@ -221,10 +221,10 @@ UserRouter.get("/CheckUser/:UserName", async (req, response) => {
 })
 
 UserRouter.get("/UserData/:UserName" , async(req,response)=>{
-  const USerName = req.params.UserName;
- await  UserSchema.findOne({UserName: USerName})
+  const UserName = req.params.UserName;
+ await  UserSchema.findOne({UserName: UserName})
   .then(res=>{
-    console.log("USerData found",res);
+    console.log("USerData of User", UserName, " found");
     response.status(200).json(res);
   })
   .catch(err=>{
@@ -232,6 +232,20 @@ UserRouter.get("/UserData/:UserName" , async(req,response)=>{
     response.status(400).send("Error: " + err.message);
   })
 })
+
+UserRouter.post("/Update/:UserName", async(req,response)=>{
+  const UserName = req.params.UserName;
+  console.log("Recived Request to update order history for user: " + UserName);
+    await UserSchema.updateOne({UserName: UserName}, {$set: { OrderHistory : req.body.UserData.OrderHistory}})
+    .then(res=>{
+      console.log("Result from User Data update",res);
+      response.status(200).send(res);
+    })
+    .catch(err=>{
+      console.log("Error while updating User Data",err);
+    })
+})
+
 
 
 export default UserRouter;

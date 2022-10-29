@@ -9,12 +9,13 @@
     font-weight: 600;
     font-size: 30px;
     border-bottom: 3px solid gold;
+    margin-top: 7vh;
 }
 .Cart-HeaderWrapper{
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    margin-top: 8vh;
+    margin-top: 3vh;
 }
 
 .Cart-CheckOutWrapper{
@@ -41,6 +42,7 @@
 .Cart-CheckOut-Button{
     font-weight: 600;
     font-size: 30px;
+    margin-top: 8px;
 }
 
 .Cart-ProductList-Wrapper{

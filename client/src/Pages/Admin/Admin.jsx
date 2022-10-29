@@ -13,6 +13,7 @@ import axios from 'axios';
 import { useParams } from "react-router";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import mongoose from "mongoose";
+import { Button } from "@mui/material";
 
 
 const Admin =  () => {
@@ -30,12 +31,16 @@ const Admin =  () => {
   };
   const [StoryStatus,setStoryStatus]=useState("");
     const [ProductData , setProductData] =useState([]);
-    const [UserData , setUserData] =useState([]);
+    const [UserData , setUserData] =useState({
+      OrderHistory:[]
+    });
     const [UserStatus, setUserStatus] = useState('Not Auth');
     const urlparams = useParams();
-    const UserName=urlparams.UserName;
+    var UserName=urlparams.UserName;
     const [SoldProducts,setSoldProducts] =useState([]);
     const [AddProductsForm,setAddProductForm] = useState(false);
+    const [HelperText,setHelperText] = useState("");
+    UserName  = JSON.parse(window.localStorage.getItem("UserName"));
     const [NewProduct, setNewProduct] = useState({
         FullName:"",
         Description:[],
@@ -50,6 +55,7 @@ const Admin =  () => {
         SellerId:  UserName || ""
         
     });
+    
     const addProduct = async() =>{
         var TempData = NewProduct;
         console.log("Debugging FileUpload-> New Post->",TempData);
@@ -96,13 +102,18 @@ const Admin =  () => {
          )
          .then(res=>{
           console.log("Post Insertion Response->",res);
-          
-      
+          const temp = ProductData;
+          temp.push(TempData);
+          setProductData(new Array(temp));
+          setLoadData("5");
+          setLoadData("2");
+          setHelperText("Product Added To Shop");
          })
          .catch(err=>{
           console.log("Post Insertion Error->",err);
+          setHelperText( "Image Format Not Supported Please Change and try again");
          })
-      
+           
       
       
         }
@@ -143,7 +154,7 @@ console.log(UserName);
     useEffect(() => {console.log("useEffect Fired");
   if(LoadData === '1'){console.log("ProductData Fetched");
     
-         axios.get(`http://localhost:5000/Server/Auth/UserName/${UserName}}`)
+         axios.get(`http://localhost:5000/Server/Auth/UserData/${UserName}`)
       .then((response=>{
         console.log(" Product response found");
         
@@ -251,11 +262,12 @@ console.log(UserName);
                                 />
                        </label>
         </div>
-        <div className="Seller-AddForm-Button">
-            <span  onClick={()=>{
+        <div className="Seller-AddForm-Button CustomButton-GeneralProperties AddProductButton-X">
+            <div  onClick={()=>{
                 addProduct();
-            }} >Add Product</span>
+            }} >Add Product</div>
         </div>
+        <div className="HelperText" id="AddProduct-HelperText">{HelperText}</div>
             </div>
             </div>
               </div>
@@ -277,8 +289,8 @@ if(UserStatus==="Auth"){
             <img className="Avatar Hidden" src="" alt="" />
           </div>
           <div className="User-Name-Holder">
-            <span className="User-Name">AdminAccess</span>
-            <span className="Basic-Info-Text">Admintest1</span>
+            <span className="User-Name">{UserName}</span>
+            <span className="Basic-Info-Text">Profile</span>
           </div>
         </div>
         <Box
@@ -305,15 +317,16 @@ if(UserStatus==="Auth"){
               >
                 <Tab label="Purchase History" value="1" sx={{fontSize:'16px',fontWeight:'320'}} />
                 <Tab label="Sold Products" value="2" sx={{fontSize:'16px',fontWeight:'320'}}/>
+                <Tab label="Request Product" value="3" sx={{fontSize:'16px',fontWeight:'320'}}/>
                 
               </TabList>
             </Box>
-            <TabPanel value="1"  sx={{display:'flex', flexFlow:'column nowrap', alignItems:'center' }}>
+            <TabPanel value="1"  sx={{display:'flex', flexFlow:'row wrap', alignItems:'center',justifyContent:'center' }}>
               <span className="Count-Of-Entity">
-                {UserData.length}
+                {UserData.OrderHistory.length}
               </span>
               {
-               UserData.map(Product =>{
+               UserData.OrderHistory.map(Product =>{
                  return(
                 <ProductCard product={Product} />
                  )
@@ -327,9 +340,9 @@ if(UserStatus==="Auth"){
             <div className="SellerProfile-AddProductIcon InsideSold-Icon"
             
             >
-            <span className="SellerProfile-AddProductButton"  onClick={()=>{
+            <div className="SellerProfile-AddProductButton CustomButton-GeneralProperties AddProductButton-X"  onClick={()=>{
                setAddProductForm(true);
-            }}  >  Add Product </span>
+            }}  >  Add Product </div>
 
         </div>
         <NewProductForm />
@@ -344,7 +357,47 @@ if(UserStatus==="Auth"){
             
             }
             </TabPanel>
-           
+            <TabPanel value="3"  sx={{display:'flex', flexFlow:'row wrap', alignItems:'center' }}>
+             <TextField
+             label="Receiver's UserName"
+             placeholder="Receiver's UserName"
+             sx={{
+              width:'40%',margin:'10px', maxWidth:'700px'  , boxShadow:4
+             }}
+             />
+             <TextField
+             label="Receiver's Email Address"
+             placeholder="Receiver's Email Address"
+             sx={{
+              width:'50%',margin:'10px', maxWidth:'700px'  , boxShadow:4
+             }}
+             />
+             <TextField
+             label="Request Body"
+             placeholder="Request Body"
+             sx={{
+              width:'80%',margin:'10px', maxWidth:'700px'  , boxShadow:4 , marginLeft:'10%'
+             }}
+             multiline
+             maxRows={6}
+             />
+             <div className="SubmitElemenets-Request-Body">
+             <Button 
+             onClick={()=>{
+               const x = document.getElementById("RequestSubmit-HelperText");
+               x.innerHTML="Request Submmited Successfully";
+             }}
+             sx={{
+                  backgroundColor:'gold' , boxShadow:4 
+             }}> Submit Request</Button>
+             <div className="RequestSubmit-HelperText" id="RequestSubmit-HelperText"   
+             sx={{
+              display:'block', marginLeft:'40%'
+             }}
+
+             ></div>
+             </div>
+            </TabPanel>
           </TabContext>
         </Box>
       </div>

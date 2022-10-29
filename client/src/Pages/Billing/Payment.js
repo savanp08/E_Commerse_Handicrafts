@@ -7,13 +7,16 @@ import axios from "axios";
 
 const Payment = () =>{
     const params = useParams();
-    const UserName = params.UserName;
+    var UserName = params.UserName;
 const Total = params.Total;
 console.log(params);
+const Port = "http://localhost:5000";
 const [CardNumber,setCardNumber] = useState("");
 const [Pin,setPin] = useState("");
 const [FullName,setFullName] = useState("");
 const [Cart , setCart] = useState([]);
+const [ProductList,setProductList] = useState(new Map());
+const [UserData,setUserData] = useState();
 
 useEffect(()=>{
     const Temp = window.localStorage.getItem("Cart");
@@ -21,21 +24,69 @@ useEffect(()=>{
     setCart(X);
   console.log("Cart Items fected from local storage", X);
 },[])
+
+  useEffect( ()=>{
+    UserName = window.localStorage.getItem("UserName");
+    UserName = JSON.parse(UserName);
+     axios.get(`${Port}/Server/Auth/USerData/${UserName}`)
+    .then(res=>{
+      console.log("User data fetched", res.data);
+        setUserData(res.data);
+    })
+    .catch(err=>{
+      console.log("error fetching user data", err);
+    })
+  },[])
+
+
+  useEffect( ()=>{
+     axios .get(`${Port}/Products/get`)
+    .then(res=>{
+      console.log("All products fetced ",res.data);
+      const Temp = res.data;
+          if(Temp && Array.isArray(Temp)){
+            Temp.forEach(product=>{
+              ProductList.set(product._id, product);
+            })
+          }
+          setProductList(new Map(ProductList));
+    })
+    .catch(err=>{
+      console.log("Error fetching products", err);
+    })
+  },[])
   
   async function userEdit (){
-    const Port = "http://localhost:5000";
+    
     Cart.forEach(async product=>{
-      await axios.post(`${Port}/Products/Update/${product.ProductId}`,{
-        
+         var temp = ProductList.get(product._id);
+         temp.Quantity -= product.Quantity;
+         temp.ProductsSold+=product.Quantity;
+      await axios.post(`${Port}/Products/Update/${product._id}`,{
+          Product: product
       })
       .then(res=>{
-             
+             console.log("Product ",product._id ," Successfully updated");
       })
       .catch(err=>{
-         
+          console.log("error while updating ",product._id);
       })
     })
+    Cart.forEach(product=>{
+      UserData.OrderHistory.push(product);
+    })
     
+            console.log("Debug user update-> Sending USedata for updation",UserData);
+               await axios.post(`${Port}/Server/Auth/Update/${UserName}`,{
+                 UserData:UserData
+                 
+               })
+               .then(res=>{
+                console.log("USerData updated",UserData);
+               })
+               .catch(err=>{
+                console.log("error while updating userdata",err);
+               })
        
   }
 
@@ -75,7 +126,7 @@ useEffect(()=>{
               <div className="Payment-SubmitButton"
               onClick={()=>{
                 userEdit();
-                window.location.replace('/Acknoledgemnt')
+              //  window.location.replace('/Acknoledgemnt')
               }}
               >
                 Pay {Total}
