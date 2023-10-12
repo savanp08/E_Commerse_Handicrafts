@@ -74,7 +74,7 @@ async function addMedia(files){
   console.log("Uploaded Links->",MediaLinks);
    resolve(MediaLinks);
   }
-  else if(it===files.length && count>0){
+  else if(it===files.length && count>0){   
     console.log("error while uplaodng pic->");
     reject("err");
   }

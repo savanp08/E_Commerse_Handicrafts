@@ -29,7 +29,8 @@ async function AddToCartProduct(Product){
       let Temp = localStorage.getItem("Cart");
      
         
-      
+      if(Temp && Temp.length==0) Temp = "";
+      if(Temp && Temp.length)
     console.log("Cart Items Fetched from Local Storage",JSON.parse(Temp));
     
      
@@ -84,16 +85,18 @@ return (
         </div>
         <div className="ProductCard-BackSideWrapper">
             <div className="ProductCard-BackSide-TopWrapper">
-                <div className="ProductCard-BackSide-ProductSeller">
+                <div className="ProductCard-BackSide-ProductSeller"
+                sx={{ color:'white' }}
+                >
                    Product By : {Product.SellerId}
                    </div>
-                   <div className="ProductCard-BackSide-ProductSeller">
+                   <div className="ProductCard-BackSide-ProductSeller" sx={{ color:'white' }}>
                    Quantity : {Product.Quantity}
                    </div>
-                   <div className="ProductCard-BackSide-ProductSeller">
+                   <div className="ProductCard-BackSide-ProductSeller" sx={{ color:'white' }}>
                    Sold : {Product.ProductsSold}
                    </div>
-                   <div className="ProductCard-BackSide-ProductDescription">
+                   <div className="ProductCard-BackSide-ProductDescription" sx={{ color:'white' }}>
                     {Description[0]}
                    </div>
             </div>

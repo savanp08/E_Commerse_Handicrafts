@@ -90,7 +90,7 @@ position: absolute;
 }
 .ProductCard-BackSide-TopWrapper{
     width: 280px;
-
+    color: white;
 }
 .ProductCard-BackSide-ProductDescription{
 width: 280px;
@@ -100,6 +100,7 @@ text-overflow: clip;
 height: 100px;
 overflow-y: hidden;
 overflow-x: hidden;
+
 }
 .ProductCard-BackSide-BottomWrapper{
     display: flex;

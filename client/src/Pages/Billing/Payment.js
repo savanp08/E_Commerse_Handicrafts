@@ -126,7 +126,10 @@ useEffect(()=>{
               <div className="Payment-SubmitButton"
               onClick={()=>{
                 userEdit();
-              //  window.location.replace('/Acknoledgemnt')
+                setTimeout(()=>{
+                  window.location.replace('/Acknoledgemnt')
+                },3000)
+                
               }}
               >
                 Pay {Total}

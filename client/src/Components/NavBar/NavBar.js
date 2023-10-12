@@ -51,12 +51,13 @@ const NavBar = () => {
     let Temp = localStorage.getItem("Cart");
      
         
-      
+      if(Temp && Temp.length==0) Temp = "";
+      if(Temp && Temp.length)
     console.log("Cart Initial -> Cart Items Fetched from Local Storage",JSON.parse(Temp));
     
      
       
-
+    
      var Parsed;
     if(Temp && Temp.length>0){ 
      Parsed = JSON.parse(Temp);
@@ -77,7 +78,8 @@ const NavBar = () => {
       let Temp = localStorage.getItem("Cart");
      
         
-      
+      if(Temp && Temp.length==0) Temp = "";
+      if(Temp && Temp.length)
       console.log("Cart Count -> Cart Items Fetched from Local Storage",JSON.parse(Temp));
       
        

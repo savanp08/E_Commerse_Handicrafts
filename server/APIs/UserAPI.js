@@ -50,7 +50,7 @@ UserRouter.post("/:UserType/SignUp", async (req, res) => {
           });
         console.log(Existing);
         if (Existing === false) {
-          console.log("Not Existing so gen Tok");
+          console.log("Not Existing so gen Tok"); 
           res.status(202).json({ AccessToken: AccessToken });
         }
     //   } else if (UserType === "Admin") {
@@ -229,7 +229,7 @@ UserRouter.get("/UserData/:UserName" , async(req,response)=>{
   })
   .catch(err=>{
     console.log("USerData not found error occurred",err);
-    response.status(400).send("Error: " + err.message);
+    response.status(400).send("Error: " + err.message);  
   })
 })
 

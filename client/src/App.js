@@ -19,6 +19,13 @@ localStorage.setItem = function(key, value) {
 
   originalSetItem.apply(this, arguments);
 }; 
+
+  // const Temp = localStorage.clear = function(evn, val){
+  //   const x = 
+  // }
+
+
+
   return (
     <div className="App-Wrapper">
        <Router>

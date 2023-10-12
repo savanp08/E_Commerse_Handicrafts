@@ -33,7 +33,7 @@ const [QuantityList,setQuantityList] = useState(new Map());
       const token = localStorage.getItem(`User ${UserName}`);
       console.log("fetched from local->");
       console.log(token);
-      if (token)
+      if (token){
         await axios
           .get("http://localhost:5000/Server/Auth/TokenValidate", {
             headers: { authorization: `Bearer ${token}` },
@@ -52,13 +52,15 @@ const [QuantityList,setQuantityList] = useState(new Map());
             console.log(error);
           });
     }
+    else window.location.replace("/Login");
 
-
+  }
     useEffect(()=>{
       let Temp = localStorage.getItem("Cart");
          
             
-          
+      if(Temp && Temp.length==0) Temp = "";
+      if(Temp && Temp.length)
       console.log("For Cart -> Cart Items Fetched from Local Storage",JSON.parse(Temp));
       
        
@@ -103,10 +105,26 @@ console.log("Quantity List -> ", QuantityList);
 
 
     useEffect(()=>{
-        const Temp = window.localStorage.getItem("Cart");
-        const X = JSON.parse(Temp);
-        setCart(X);
-      console.log("Cart Items fected from local storage", X);
+      let Temp = localStorage.getItem("Cart");
+         
+            
+      if(Temp && Temp.length==0) Temp = "";
+      if(Temp && Temp.length)
+      console.log("For Cart -> Cart Items Fetched from Local Storage",JSON.parse(Temp));
+      
+       
+        
+    
+       var Parsed;
+      if(Temp && Temp.length>0){ 
+       Parsed = JSON.parse(Temp);
+      }
+      else Parsed = [];
+      if(!Array.isArray(Parsed)){
+          Parsed = [Parsed];
+        }
+        setCart(Parsed);
+      console.log("Cart Items fected from local storage", Parsed);
     },[])
   
 
@@ -145,7 +163,8 @@ console.log("Quantity List -> ", QuantityList);
             </div>
             <div className="Cart-CheckOut-Button CustomButton-GeneralProperties"
             onClick={()=>{
-                window.localStorage.clear();
+                const temp = [];
+                window.localStorage.setItem("Cart", temp);
                 
                 setProductList(new Array([]));
             }}

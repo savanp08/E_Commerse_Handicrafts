@@ -74,8 +74,6 @@ console.log("fetched from local->")
       { 
         localStorage.setItem('UserName', JSON.stringify(UserName));
         window.location.replace(`/Shop/${UserName}`);
-        
-       
       }
     console.log(Response.data); 
     
