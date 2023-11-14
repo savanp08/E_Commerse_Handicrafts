@@ -108,13 +108,17 @@ restaurantRouter.get("/getOne/:_id", async (req,response)=>{
     try{
       console.log(" get one restaurants fired",req.params._id);
       const result =await restaurantSchema.findOne({_id : req.params._id});
-      if(result.error){
-        console.log("Error while fetching all restaurants",result.error);
-        return response.status(500).send(result.error);
+      if(result && result.errors){
+        console.log("Error while fetching one restaurants",result.errors);
+        return response.status(500).send(result.errors);
       }
-      else{
+      else if(result){
          console.log("Fetched restauran data => ",result);
          return response.status(200).send(result);
+      }
+      else{
+        console.log("Error while fetching one restaurants",result);
+        return response.status(500).send(result);
       }
       
     }catch(err){

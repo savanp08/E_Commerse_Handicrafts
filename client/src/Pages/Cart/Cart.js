@@ -67,6 +67,7 @@ const Cart = () =>{
           <div className="pcart14-cart-inner-wrap">
             {
               displayMap && Array.from(displayRestMap.values()).map((product)=>{
+                if(!restaurantMap.has(product[0].restaurantId)) return null;
                 return(
                   <div className="pcart14-cart-restaurant-wrap">
                     <RestCompWithFilter restaurant={

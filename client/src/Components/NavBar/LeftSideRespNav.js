@@ -66,6 +66,11 @@ const Left_Menu = () =>{
             <span className="NavBar-LeftMenu-ContentEle">
                Cart
             </span>
+            <NavLink to="/Login"
+            
+            >
+              Logout
+            </NavLink>
         </div>
       </div>
         </div>

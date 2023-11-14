@@ -70,7 +70,7 @@ async function test() {
 
       try{
          console.log("Opening the First Page : SignUp");
-        // Navigate to the Signup page
+       // Navigate to the Signup page
         const userSignUpCall = await userSignUp(driver);
         const userSignUpCall1 = await userSignUp(driver);
         if(userSignUpCall)

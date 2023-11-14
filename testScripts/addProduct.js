@@ -4,7 +4,7 @@ import { timeoutFunction } from './HelperFunctions.js';
 
 async function addProd(driver, studentid, bookid){
     try{
-        console.log("Opening the Page :manage Books for task update book");
+        
         await driver.get('http://localhost:3000/Admin/Account');
         await new Promise(resolve => setTimeout(resolve, 4000));
 

@@ -68,7 +68,7 @@ const RestauCardForProduct = ({restaurant,productsMap}) => {
 
     if(!restaurant) return (<div>loading...</div>)
     console.log("restaurant in restauCardForProduct ",restaurant);
-    const Address = restaurant.location.street1 +", " + restaurant.location.street1+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.pinCode;
+    const Address = restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.pinCode;
   return (
     <div className="carcfp34-main-wrap">
         <div className='carcfp34-rest-main-wrap'>

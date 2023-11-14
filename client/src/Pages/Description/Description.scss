@@ -1,5 +1,6 @@
 .DescriptionWrapper{
-    width: 100%;
+    width: 80%;
+    min-width: 280px;
     height: 100%;
     margin-top: 40px;
     display: flex;
@@ -51,7 +52,8 @@
     
     border-radius: 30px;
     border: none;
-    background-color: rgb(225, 58, 58);
+    background-color: rgb(200, 82, 64);
+    margin-top: 40px;
     
 }
 .Description-Top-Right-Top{

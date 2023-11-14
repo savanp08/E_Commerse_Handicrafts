@@ -89,7 +89,7 @@ const Login = () => {
       <div className="login-container">
         <div className="login-titleWrap">
       <span className="login-title">
-                Welcome to Lost&Found
+                Welcome to Troo
             </span>
             </div>
         <div className="login-box">

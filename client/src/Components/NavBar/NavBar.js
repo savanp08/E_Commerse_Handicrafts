@@ -15,6 +15,7 @@ import { addSearch } from "../../Store/Slices/FilterSlice/FilterSlice";
 import { addCart, removeCart } from "../../Store/Slices/CartSlice/CartSlice";
 import { removeUser } from "../../Store/Slices/UserSlice/UserSlice";
 import { removeAdmin } from "../../Store/Slices/UserSlice/adminSlice";
+import axios from "axios";
 
 
 
@@ -35,6 +36,8 @@ const NavBar = () => {
   const [Error_search, setError_search] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [restauarantMap, setRestaurantsMap] = useState(new Map());
+  const [restaurants, setRestaurants] = useState([]);
   async function searchFun(){
    if(SearchQuery && SearchQuery.length===0){
       setError_search(true);
@@ -75,8 +78,36 @@ useEffect(()=>{
 },[cart])
 
 useEffect(()=>{
+  async function fetchAllRestaurants(){
+    await axios.get("/Restaurant/getAllRestaurants").then(res=>{
+      console.log("Admin Fetch Restaurants Debug =>",res.data);
+            
+            var temp_map = new Map()
+            if(Array.isArray(res.data)){
+              res.data.forEach(restaurant => {
+                     temp_map.set(restaurant._id , restaurant);
+              })
+              console.log("Temp =>", temp_map)
+              setRestaurantsMap(new Map(temp_map));
+              setRestaurants(res.data);
+            }
+    }).catch(err=>{
+      console.log("Admin Fetch Restaurants Debug => Error => ",err);
+    }) 
+  }
+  fetchAllRestaurants();
    if(user && user._id){
-          dispatch(addCart(user.cart));
+    var x = new Map();
+    if(Array.isArray(user.cart)){
+      user.cart.forEach((ele)=>{
+        if(restauarantMap.has(ele.restaurantId)){
+          x.set(ele._id,ele);
+        }
+      })
+    }
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXX =>",x)
+    setItemCount(x.size);
+          dispatch(addCart(Array.from(x.values())));
    }
 },[user])
   return(
@@ -189,13 +220,28 @@ const AccountOptions = () =>{
               >
                 Profile
               </div>
-              <div className="AccountOptionsEle" >
+              <div className="AccountOptionsEle" 
+              onClick={(e)=>{
+                navigate('/Account')
+              }}
+              >
                 Your Orders
               </div>
-              <div className="AccountOptionsEle" >
+              <div className="AccountOptionsEle" 
+              onClick={(e)=>{
+                navigate('/Cart')
+              
+              }}
+              >
                View Cart
               </div>
-              <div className="AccountOptionsEle" >
+              <div className="AccountOptionsEle" 
+              onClick={(e)=>{
+                navigate('/Account')
+              
+              }}
+              >
+
                 See History
               </div>
               
@@ -239,28 +285,6 @@ const RespNavBar = () =>{
     return s.split("").reverse().join("");
 }
 
-useEffect(()=>{
-  if(cart){
-    var x = new Map();
-    if(Array.isArray(cart)){
-      cart.forEach((ele)=>{
-        if(x.has(ele._id))
-        x.set(ele._id,{...x.get(ele._id),Quantity:x.get(ele._id).Quantity+ele.Quantity});
-        else
-        x.set(ele._id,ele);
-      })
-      setCartMap(new Map(x));
-      setItemCount(cart.length);
-    }
-  }
-},[cart])
-
-useEffect(()=>{
-   if(user && user._id){
-          dispatch(addCart(user.cart));
-   }
-},[user])
-
     return(
         <div className="NavBarResp-Wrapper">
             <div className="NavBarResp-LeftsideOptionsMenu">
@@ -290,8 +314,7 @@ useEffect(()=>{
         </NavLink>
    
             </div>
-            <div className="NavBarResp-Account">
-           <AccountOptions />
+           
            <div className="NavBar-CartIcon"
     onClick={()=>{
       navigate('/Cart');
@@ -309,7 +332,7 @@ useEffect(()=>{
           />
         </Badge>
         </div>
-            </div>
+          
         </div>
     )
 }

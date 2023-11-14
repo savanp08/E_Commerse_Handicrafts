@@ -115,7 +115,7 @@ if(Product){
        <div className="Description-Top-Right">
          <div className="Description-Top-Right-Top">
          <div className="Description-Top-Right-Price">
-            Rs: {Product.Price}
+            $: {Product.Price}
              </div>
              <div className="Description-Top-Right-Rating">
              <Rating name="half-rating" 

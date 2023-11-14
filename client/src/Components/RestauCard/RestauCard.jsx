@@ -33,7 +33,7 @@ const RestauCard = ({restaurant}) => {
 
     if(!restaurant) return (<div>loading...</div>)
     console.log("restaurant in restauCard ",restaurant);
-    const Address = restaurant.location.street1 +", " + restaurant.location.street1+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.pinCode;
+    const Address = restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.pinCode;
   return (
     <div className="crc25-main-wrap">
         <div className="crc25-details-wrap">

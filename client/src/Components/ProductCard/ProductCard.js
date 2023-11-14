@@ -75,7 +75,7 @@ return (
          <Rating name="half-rating" defaultValue={0} precision={Product.Rating} readOnly/>
          </div>
          <div className="ProductCard-Price">
-             Rs : {Product.Price}
+             $ : {Product.Price}
          </div>
          </div>
          <div className="ProductCard-Description">

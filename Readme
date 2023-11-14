@@ -1,0 +1,4 @@
+'npm install' inside folders client, server and testScripts
+'npm start' inside folders client, server 
+'node index.js' for testScripts (inside testScripts folder)
+
