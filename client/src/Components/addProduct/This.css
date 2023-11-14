@@ -1,0 +1,128 @@
+.caap31-main-wrap{
+    position: fixed;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    box-shadow: 2px 6px 8px 7px rgba(0,0,0,0.4);
+    border-radius: 20px;
+}
+.caap31-close-button-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+
+}
+.caap31-close-button{
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.caap31-title-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 21px;
+}
+.caap31-title-text{
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(86, 207, 86);
+
+}
+.caap31-input-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 21px;
+}
+
+.caap31-fieldset-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+   
+    margin-top: 10px;
+}
+
+.caap31-legend-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+.caap31-media-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.caap31-media-preview-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    max-height: 300px;
+    overflow-y: auto;
+    max-width: 260px;
+    
+}
+.caap31-media-preview-box{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.caap31-media-preview{
+    width: 250px;
+    height: 200px;
+    padding: 10px;
+}
+
+.caap31-submit-button-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 21px;
+   margin-bottom: 30px;
+}
+
+.caap31-submit{
+    display: flex;
+    text-align: center;
+    width: 120px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: 400;
+    border-radius: 12px;
+    box-shadow: 0px 5px 6px 2px rgba(0,0,0,0.6);
+    border: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(86, 207, 86);
+}

@@ -1,0 +1,138 @@
+.NavBar-Wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    background-color: rgb(200, 82, 64);
+    height: 100%;
+    box-shadow: 5px 5px 5px rgb(65, 65, 65);
+    min-height: 70px;
+}
+.NavBarResp-Wrapper{
+display: none;
+flex-flow: row nowrap;
+justify-content: space-around;
+align-items: center;
+align-content: center;
+width: 100%;
+background-color: rgb(209, 84, 64);
+height: 100%;
+}
+.NavBar-LinkEle{
+    text-decoration: none;
+    color:white;
+    font-size: 22px;
+}
+.ActiveEle-NavBar{
+    
+}
+
+.NavBarResp-LeftsideOptionsMenu{
+flex:0.15;
+}
+
+.NavBarResp-SearchBarWrapper{
+flex:0.5;
+}
+
+.NavBarResp-LoginOptions{
+    flex:0.25;
+}
+.NavBarResp-Account{
+    flex:0.1;
+}
+
+@media only screen and (max-width:600px){
+.NavBar-Wrapper{
+    display:none;
+}
+.NavBarResp-Wrapper{
+    display: flex;
+}
+}
+
+
+
+
+.NavBar-LeftMenu-Wrapper{
+    position: relative;
+    z-index: 10;
+}
+
+.NavBar-LeftMenu-OptionsContainer{
+    position: absolute;
+    background-color: white;
+    width: 50vw;
+    max-width: 400px;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 1.65vh;
+    height: 90vh;
+}
+
+.NavBar-LeftMenu-ContentType{
+    display: flex;
+    flex-flow: column nowrap;
+    color: white;
+    height: 180px;
+    justify-content: space-around;
+    align-content: center;
+    border-bottom: solid 3px black;
+}
+
+.NavBar-LeftMenu-ContentEle{
+cursor: pointer;
+color: rgb(92, 190, 70);
+font-size: 19px;
+font-weight: 500;
+text-align: end;
+padding: 10px;
+}
+
+.DividerHorizontal-Half{
+    border-top: solid 3px black;
+    width: 50%;
+    align-self: flex-end;
+}
+
+.DividerHorizontal-Full{
+    border-top: solid 3px black;
+    width: 100%;
+    align-self: flex-end;
+}
+
+.NavBarResp-Account{
+    position: relative;
+    margin-right: 30px;
+}
+
+.AccountOptionsMenuContainer{
+position: absolute;
+background-color: rgb(241, 243, 241);
+width: 140px;
+margin-left: -4vw;
+margin-top: 1.8vh;
+height: fit-content;
+box-shadow: 3px 3px 10px black;
+border-radius: 5px;
+}
+.AccountOptions-Wrapper{
+    position: relative;
+    z-index: 1000;
+}
+.AccountOptionsEle{
+    height: 30px;
+    text-align: center;
+    font-size: large;
+    font-weight: 400;
+    border-bottom: solid 2px black;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 5%;
+}
+
+.AccountOptionsEle:hover{
+    color: blue;
+}

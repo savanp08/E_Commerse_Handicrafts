@@ -1,0 +1,171 @@
+.prp15-main-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    max-width: 1300px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    margin-top: 50px;
+    min-width: 280px;
+}
+.prp15-title-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.prp15-media-compile-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    
+    width: 95%;
+   max-height: 480px;
+    
+}
+
+.prp15-media-compile-inner-wrap0{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 62%;
+}
+.prp15-media-compile-inner-wrap1{
+   
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 38%;
+}
+.prp15-media-compile-inner-wrap2{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 22%;
+}
+
+.prp15-media-compile-img0{
+    width: 100%;
+    height: 100%;
+    max-height: 470px;
+}
+.prp15-media-compile-img1{
+    width: 100%;
+    height: 100%;
+    max-height: 230px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.prp15-restaurant-inner-wrap{
+    margin-top: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.prp15-restaurant-info-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    
+}
+
+.prp15-restaurant-info-inner-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.prp15-restaurant-group-wrap1{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+}
+.prp15-restaurant-group-wrap2{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+}
+
+.prp15-restaurant-group-text{
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    font-size: 17px;
+    text-align: left;
+}
+
+
+.prp15-restaurant-featured-list-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+
+}
+
+.prp15-restaurant-all-list-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.prp15-rating-text{
+    background-color: rgb(62, 139, 62);
+    color:white;
+    width: 50px;
+    text-align: center;
+    border-radius: 5.1px;
+}
+
+.prp15-rest-name-text{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(86, 207, 86);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.prp15-restaurant-menu-title-wrap{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-top: solid 1.5px rgb(86, 98, 97);
+    width: 50%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:space-around;
+    align-items: center;
+}
+.prp15-restaurant-menu-title-text{
+    font-size: 27px;
+    font-weight: 600;
+    color: rgb(86, 207, 86);
+    text-align: center;
+}

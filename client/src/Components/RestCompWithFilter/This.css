@@ -1,0 +1,13 @@
+.curcfp34-products-list-wrap{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.carcfp34-collape-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}

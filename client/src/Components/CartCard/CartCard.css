@@ -1,0 +1,49 @@
+.CartCard-Wrapper{
+    width: 80%;
+    height: 230px;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 40px;
+    box-shadow: 4px 4px 7px rgb(114, 109, 109);
+    margin-left: 3vw;
+}
+
+.CartCard-LeftSide-Wrapper{
+width: 300px;
+height: 230px;
+}
+
+.CartCard-RightSide-Wrapper{
+   
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 30px;
+    width: 50%;
+}
+.CartCard-LeftSide-Details{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow : column wrap;
+   text-align: left;
+   font-size: 17px;
+   font-weight: 500;
+}
+.CartCard-Name{
+    font-size: 21px;
+}
+.CartCard-RightSide-QuantityWrapper{
+    display: flex;
+    width: 50%;
+    flex-flow: row nowrap;
+}
+.CartCard-Description{
+    width: 280px;
+white-space: wrap;
+overflow: hidden;
+text-overflow: clip;
+height: 150px;
+overflow-y: hidden;
+overflow-x: hidden;
+}

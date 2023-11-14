@@ -1,0 +1,89 @@
+.carc23-main-wrap{
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 5px 8px 1.5px rgba(0,0,0,0.6);
+    padding: 10px;
+}
+
+.cpapc33-ProductCard-option-button{
+
+}
+
+.cpapc33-ProductCard-option-button:hover{
+    box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.2);
+}
+
+.carc23-close-button-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.carc23-close-button{
+    background-color: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+
+}
+
+.carc23-title-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.carc23-title{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(86, 207, 86);
+}
+
+.carc23-form-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.carc23-fieldset-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    border: none;
+    border-top: solid 1.5px rgb(86, 98, 97);
+    margin-bottom: 20px;
+}
+
+.carc23-legend{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(86, 98, 97);
+}
+
+
+.carc23-submit-button-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.carc23-submit-button{
+    background-color: rgb(175, 86, 207);
+    border: none;
+    border-radius: 12px;
+    width: 120px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0px 5px 6px 2px rgba(0,0,0,0.6);
+}

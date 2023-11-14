@@ -1,0 +1,209 @@
+.pc17-main-wrap{
+    width: 50%;
+    max-width: 320px;
+    min-width: 280px;
+    display: flex;
+    flex-flow:column wrap;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+    margin-top: 50px;
+}
+
+.pc17-title-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pc17-title-text{
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(200, 82, 64);
+}
+
+.pc17-content-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pc17-content-location-main-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pc17-content-fieldset{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    border-top: solid 1.5px rgb(86, 98, 97);
+    margin-bottom: 20px;
+}
+
+.pc17-content-fieldset-legend{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(86, 98, 97);
+    text-align: center;
+}
+
+.pc17-content-location-options-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pc17-content-location-option-button{
+    background-color: rgb(200, 82, 64);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.pc17-content-location-address-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pc17-content-location-address-input-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.carc23-item-location-box{
+    width: 100%;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.pc17-content-pickup-location-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pc17-content-pickup-location-text{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(86, 98, 97);
+    white-space: wrap;
+    overflow: hidden;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    max-height: 70px;
+}
+
+.pc17-content-order-details-main-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.pc17-content-order-details-item-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 250px;
+}
+.pc17-content-order-details-item-name-wrap{
+    width: 100%;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 250px;
+}
+.pc17-content-order-details-item-name-text{
+    font-size: 16px;
+    font-weight: 550;
+    
+}
+
+.pc17-order-details-text-main{
+    font-size: 17.5px;
+    font-weight: 650;
+    color: rgb(86, 98, 97);
+}
+
+.pc17-content-payment-main-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+}
+
+.pc17-content-payment-input-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.pc17-content-payment-input-box{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pc17-content-order-main-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.pc17-content-order-button{
+    background-color: rgb(200, 82, 64);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+}
+

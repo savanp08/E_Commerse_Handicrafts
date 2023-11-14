@@ -1,0 +1,188 @@
+
+.capc32-main-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    
+    
+    
+    
+}
+.capc32-title-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.capc32-title-text{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: rgb(86, 207, 86);
+    font-size: 25px;
+    font-weight: 600;
+}
+
+
+.cpapc33-ProductCard-options-wrap{
+    position: absolute;
+    top:0px;
+    right:0px;
+}
+
+.capc32-product-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+}
+
+
+
+
+.carcfp34-main-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-height: 500px;
+    max-width: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 50px;
+    box-shadow: 0px 5px 8px 1.5px rgba(0,0,0,0.6);
+    margin-right: 20px;
+}
+.carcfp34-restaurant-group-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 70%;
+}
+
+.carcfp34-details-wrap{
+    display: flex;
+}
+
+.carcfp34-rest-main-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.carcfp34-details-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 30px;
+
+}
+
+.carcfp34-restaurant-name{
+    font-size: 21px;
+    font-weight: 600;
+    color: rgb(86, 207, 86);
+    max-width: 500px;
+word-wrap:break-word;
+text-overflow: ellipsis;
+max-height: 30px;
+overflow: hidden;
+}
+
+.carcfp34-restaurant-address{
+    font-size: 19px;
+    font-weight: 400;
+   max-width: 70%;
+  text-align: left;
+text-overflow: ellipsis;
+max-height: 50px;
+overflow: hidden;
+   white-space: nowrap;
+   
+}
+
+.carcfp34-restaurant-ratings-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.carcfp34-products-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.carcfp34-options-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 30px;
+}
+
+.carcfp34-option-button{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: 400;
+    border-radius: 12px;
+    box-shadow: 0px 5px 6px 2px rgba(0,0,0,0.6);
+    border: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(86, 207, 86);
+}
+
+
+.carcfp34-products-main-inner-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.carcfp34-products-filter-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.carcfp34-products-list-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+    
+}
+
+

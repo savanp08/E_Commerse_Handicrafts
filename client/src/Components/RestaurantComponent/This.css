@@ -1,0 +1,64 @@
+.carc12-main-wrap{
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+
+
+}
+
+.carc12-addrest-button-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+
+}
+
+.carc12-addres-Button{
+    display: flex;
+   text-align: center;
+    width: 120px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: 400;
+    border-radius: 12px;
+    box-shadow: 0px 5px 6px 2px rgba(0,0,0,0.6);
+    border: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(86, 207, 86);
+}
+
+.carc12-addres-Button:hover{
+    box-shadow: 0px 5px 6px 2px rgba(0,0,0,0.6);
+    cursor: pointer;
+}
+
+.carc12-restaurant-inner-cards-wrap{
+    display: flex;
+    flex-flow:column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+}
+
+.carc12-restaurant-filter-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.carc12-restaurant-cards-wrap{
+    display: flex;
+    flex-flow: column wrap;
+
+}
+
+

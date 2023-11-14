@@ -1,0 +1,8 @@
+{
+    "private": true,
+    "scripts": {
+        "client": "cd client && npm start",
+        "server": "cd server && npm start",
+        "startClientAndServer": "npm run client && npm run server"
+    }
+}

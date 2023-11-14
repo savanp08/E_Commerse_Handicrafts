@@ -1,0 +1,252 @@
+.LoginPage-OverAll{
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+align-content: center;
+}
+
+.Login-Wrapper{
+    display:flex;
+    width: 400px;
+    height: 300px;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    
+    box-shadow: 5px 5px 5px rgb(65,65,65);
+    border-radius: 5px;
+}
+.Login-Container{
+    display:flex;
+    width: 100%;
+    height: 300px;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 5px 25px 25px rgb(214, 197, 197) , 15px -15px -15px rgb(231, 216, 216) ;
+
+}
+
+.User-Pass-Container{
+    display:flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+   height: 150px;
+  
+    width:300px;
+    
+}
+
+.QuickRoom-Container > .MuiFormControl-root{
+    display:none;
+}
+
+.SavedRoom-Container > .MuiFormControl-root{
+    display:none;
+}
+.LoginSubmit-Div > .MuiButtonBase-root {
+   
+}
+
+.LoginPage-Wrapper{
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url("https://www.handsofgold.in/wp-content/uploads/2021/10/RUM06696-1.jpg");
+    background-size: cover;
+    width: 100%;
+}
+
+.LoginSubmit-Div{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 150px;
+}
+
+.CreateAccount-Button{
+    width: 150px;
+    margin-top: 5px; 
+    cursor: pointer;
+}
+
+.SignUpContainer{
+    height: 220px;
+}
+
+.login-wrap{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: rgb(255, 255, 255);
+}
+
+.login-container{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+   
+}
+
+.login-box{
+    width:300px;
+    height: 300px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding:5px;
+    flex:0.5
+}
+.login-titleWrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    flex:0.25;
+    width:100%;
+}
+.login-title{
+ margin-bottom: 20px;
+ font-weight: 600;
+ font-family:'Courier New', Courier, monospace;
+ font-size: 23px;
+ color: rgb(121, 130, 130);
+}
+.login-innerBox{
+    width:300px;
+    height: 260px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.SignUp-credWrap{
+    width:300px;
+   
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.SignUp-innerBox{
+    width:300px;
+   
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+
+}
+.login-field{
+ width: 80%;
+ max-width: 350px;
+ display: flex;
+ flex-flow: row wrap;
+ justify-content: center;
+ align-items: center;
+ align-content: center;
+}
+
+.login-signUpWrap{
+    color: black;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-top: 12px;
+    width: 100%;
+    flex:0.25
+}
+.login-credWrap{
+    display:flex;
+    flex-flow: column wrap;
+    width: 450px;
+    height: 170px;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    
+}
+
+.login-passTextWrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    margin-left: auto;
+    font-size: 15px;
+    margin-top: 4px;
+    color: rgb(133, 140, 141);
+}
+.login-passTextWrap:hover{
+    cursor: pointer;
+    color:'white';
+}
+
+.login-passText:hover{
+    color:'white';
+}
+
+
+
+.login-sideStyleWrap {
+    position: relative;
+    width: 50%;
+    height: 100%;
+   
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: -20vh;
+  }
+  .login-sideStyleWrap::before {
+    
+    width: 50%;
+    height: 100vh;
+  }
+  .login-sideStyleImg{
+    width: 100%;
+    object-fit: cover;
+    
+    max-width: 400px;
+    max-height: 400px;
+  }
+  .login-sideText{
+ position: absolute;
+ margin-top: 50vw;
+ color: rgb(122, 118, 118);
+ font-size: 45px;
+ width: 80%;
+ font-weight: 900;
+ letter-spacing: -1.2px;
+ line-height: 60px;
+ text-align: center;
+ font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
