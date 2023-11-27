@@ -63,6 +63,18 @@ const Login = () => {
       return emailRegex.test(email);
   
   }
+  function validatePassword(password){
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
+    if(!passwordRegex.test(password)){
+      var x= document.getElementById("pl0090-password-helperText");
+      x.innerHTML = "Password must contain atleast 1 uppercase, 1 lowercase, 1 number, and must be atleast 6 characters long";
+    }
+    else{
+      var x= document.getElementById("pl0090-password-helperText");
+      x.innerHTML = "";
+    }
+    return passwordRegex.test(password);
+  }
 
   function handleForgotPassword(e){
     e.preventDefault();
@@ -125,8 +137,13 @@ const Login = () => {
           <FormControl sx={{  width: '310px',height:'60px', }} 
           variant="standard"
           
+          aria-errormessage="Password must contain atleast 1 uppercase, 1 lowercase, 1 number, 1 special character and must be atleast 6 characters long"
+          helperText={password && !validatePassword(password) ? "Password must contain atleast 1 uppercase, 1 lowercase, 1 number, 1 special character and must be atleast 6 characters long" : ""}
           >
-          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor="standard-adornment-password"
+          error={password && !validatePassword(password)}
+          
+          >Password</InputLabel>
           <Input
             id="user-login-password"
             type={showPassword ? 'text' : 'password'}
@@ -136,6 +153,9 @@ const Login = () => {
                     color:'red'
                 }
             }}
+            error={password && !validatePassword(password)}
+            aria-errormessage="Password must contain atleast 1 uppercase, 1 lowercase, 1 number, 1 special character and must be atleast 6 characters long"
+            helperText={password && !validatePassword(password) ? "Password must contain atleast 1 uppercase, 1 lowercase, 1 number, 1 special character and must be atleast 6 characters long" : ""}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -152,6 +172,9 @@ const Login = () => {
                   setPassword(e.target.value);
                 }}
           />
+          <span id="pl0090-password-helperText" className="pl0090-login-helperText">
+
+          </span>
         </FormControl>
         <div className="login-passTextWrap">
             <span className="login-passText"
@@ -189,6 +212,7 @@ const Login = () => {
             }
           }}
           onClick={(e)=> LoginFun(e) }
+          disabled={!(email && validateEmail(email) && password && validatePassword(password))}
           >
             Sign in
             </Button>

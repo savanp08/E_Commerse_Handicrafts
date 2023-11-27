@@ -60,7 +60,9 @@ if(Product){
 }catch(err){
     console.log("error in product card ",err);
 }
+if(tempCount===0) tempCount=1;
     Product.Rating=tempRating/tempCount;
+    Product.Rating = Product.Rating.toFixed(1);
  }
 
 async function AddToCartProduct(ProductX){
@@ -105,6 +107,13 @@ async function deleteCard(){
 
 
 }
+var rating =0;
+if(Product.Rating){
+    var ttt = Product.Rating
+    rating = ttt/1;
+    rating = rating.toFixed(1);
+    console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrr",rating);
+}
 const address = restaurant? restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.zipCode : "";
 if(type && type==="admin")
 return (
@@ -126,7 +135,7 @@ return (
          </div>
          
          <div className="ProductCard-group-wrap">
-         <span className='ProductCard-rating-text'>{Product.Rating}</span>
+         <span className='ProductCard-rating-text'>{rating}</span>
          
          <span className="ProductCard-Price">
               {Product.Price}$

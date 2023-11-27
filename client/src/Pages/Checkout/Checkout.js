@@ -68,6 +68,10 @@ const Checkout = () => {
         if (!regExp.test(cardNumber)) return false;
         return true;
     }
+    function validateMobile(mobile) {
+        const mobilePattern = /^[0-9]{10}$/;
+        return mobilePattern.test(mobile);
+    }
 
     function detectCardType(cardNumber) {
         const patterns = {
@@ -85,11 +89,19 @@ const Checkout = () => {
     
         return "Unknown";
     }
+    function validateHolderName(name) {
+        const namePattern = /^[a-zA-Z ]{2,30}$/;
+        return namePattern.test(name);  
+    }
+
     function validateExpirationDate(expirationMonth, expirationYear) {
         const currentDate = new Date();
         const currentYear = currentDate.getFullYear().toString();
         const currentMonth = (currentDate.getMonth() + 1).toString(); // January is 0
-
+        expirationYear = expirationYear.toString();
+        expirationMonth = parseInt(expirationMonth);
+        expirationMonth+=1;
+        expirationMonth = expirationMonth.toString();
         console.log("XXXXXX =>",expirationYear, expirationMonth,currentYear,currentMonth)
        if(expirationYear.length<4) return true;
         if (expirationYear > currentYear) {
@@ -278,7 +290,9 @@ const Checkout = () => {
                       label="Mobile Number"
                       variant="outlined"
                       required
+                      error={displayAddress.mobile && validateMobile(displayAddress.mobile)? false : true}
                       value={displayAddress.mobile || ""}
+                      helperText={displayAddress.mobile && validateMobile(displayAddress.mobile)? "" : "Invalid Mobile Number"}
                       sx={{
                         minWidth: "230px",
                       }}
@@ -384,6 +398,7 @@ const Checkout = () => {
                                 <TextField
                                 id="report-item-location-zipCode"
                                 label="Card Holder Name"
+                                
                                 variant="outlined"
                                 required
                                 sx={{
@@ -396,8 +411,8 @@ const Checkout = () => {
                                     })
                                 
                                 }}
-                                error={cardDetails.cardHolderName.length>0? false : true}
-                                helperText={cardDetails.cardHolderName.length>0? "" : "Enter Card Holder Name"}
+                                error={cardDetails.cardHolderName && validateHolderName(cardDetails.cardHolderName)? false : true}
+                                helperText={cardDetails.cardHolderName && validateHolderName(cardDetails.cardHolderName)? "" : "Invalid Card Holder Name"}
                                 />
                             </div>
                             <div className="pc17-content-payment-input-box">
@@ -408,6 +423,7 @@ const Checkout = () => {
                                 helperText={ validateCVV(cardDetails.cvv) ? "" : "Invalid CVV"}
                                 variant="outlined"
                                 required
+                                type="password"
                                 onChange={(e)=>{
                                     setCardDetails({
                                         ...cardDetails,
@@ -426,14 +442,32 @@ const Checkout = () => {
                                 label="Expiry Date"
                                 value={cardDetails.expiryDate}
                                 onChange={(newValue) => {
+                                  var date = new Date();
+                                  var year = date.getFullYear();
+                                  var month = date.getMonth()+1;
+                                  console.log("SSSSSSSSSSSSSSSSSSSSSSS, ",newValue.$M,month,year,newValue.$y)
+                                  if(!validateExpirationDate(newValue.$M,newValue.$y)) {
+                                    var x= document.getElementById("pc17-expiry-date-helper-text");
+                                    x.innerHTML="Invalid Expiry Date";
+                                    return;
+                                  }
+                                  else{
+                                    var x= document.getElementById("pc17-expiry-date-helper-text");
+                                    x.innerHTML="";
+                                  }
                                     console.log("new value ",newValue);
                                     setCardDetails({
                                         ...cardDetails,
                                         expiryDate: newValue.$M + "/" + newValue.$y
                                     })
                                 }}
+                              
                               />
+
                             </LocalizationProvider>
+                            <span id="pc17-expiry-date-helper-text">
+
+                            </span>
                                 </div>
                                
                         </div>
@@ -444,8 +478,8 @@ const Checkout = () => {
                 </span>
             <div className="pc17-content-order-main-wrap">
                 <button className="pc17-content-order-button"
-                disabled={!(validateLuhnAlgorithm(cardDetails.cardNumber) && validateCVV(cardDetails.cvv) && cardDetails.cardHolderName?.length>0 && cardDetails.expiryDate?.length>0
-                &&  ((displayAddress.street2?.length>0 && displayAddress.city?.length>0 && displayAddress.state?.length>0 && displayAddress.zipCode?.length>0 && displayAddress.mobile?.length>0) || orderType!=="delivery")
+                disabled={!(validateLuhnAlgorithm(cardDetails.cardNumber) && validateCVV(cardDetails.cvv) && validateHolderName(cardDetails.cardHolderName) && validateExpirationDate(cardDetails.expiryDate.split("/")[0],cardDetails.expiryDate.split("/")[1]) 
+                &&  ((displayAddress.street2?.length>0 && displayAddress.city?.length>0 && displayAddress.state?.length>0 && displayAddress.zipCode?.length>0 && validateMobile(displayAddress.mobile)) || orderType!=="delivery")
     )}
     onClick={(e)=>{
         handleCheckout();

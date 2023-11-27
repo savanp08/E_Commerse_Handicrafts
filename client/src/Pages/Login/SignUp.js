@@ -121,8 +121,18 @@ const SignUp = () => {
       
     })
   }
-
-
+  function validatePassword(password){
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
+    if(!passwordRegex.test(password)){
+      var x= document.getElementById("pl0090-password-helperText");
+      x.innerHTML = "Password must contain atleast 1 uppercase, 1 lowercase, 1 number, and must be atleast 6 characters long";
+    }
+    else{
+      var x= document.getElementById("pl0090-password-helperText");
+      x.innerHTML = "";
+    }
+    return passwordRegex.test(password);
+  }
 
   return (
     <div className="login-wrap">
@@ -195,6 +205,7 @@ const SignUp = () => {
                     color:'red'
                 }
             }}
+            error={password && !validatePassword(password)}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -211,6 +222,9 @@ const SignUp = () => {
                   setPassword(e.target.value);
                 }}
           />
+          <span className="login-helperText" id="pl0090-password-helperText">
+
+          </span>
         </FormControl>
        
           </div>
@@ -273,6 +287,7 @@ const SignUp = () => {
           onClick={(e)=> {
             submitLogin();
           } }
+          disabled={!(email && password && FullName && validateEmail(email) && validatePassword(password))}
           >
             Sign Up
             </Button>

@@ -22,7 +22,7 @@ const Restreviews = ({restaurant,user}) =>{
                 alert("login to add review");
                 return;
             }
-          await   axios.post("/Restaurant/editRestaurant",{
+          await axios.post("/Restaurant/editRestaurant",{
               ...restaurant,
                 reviews:[
                     ...restaurant.reviews,
@@ -37,11 +37,8 @@ const Restreviews = ({restaurant,user}) =>{
             }).then(res=>{
                   console.log("response from update rest ",res);
                   if(res && res.status=== 200){
-                    setNewReview({
-                        name:"",
-                        rating:0,
-                        text:"",
-                    })
+                    var x= document.getElementById("crr003-add-review-form-wrap");
+                    x.classList.toggle("Hide");
                   }
 
             }).catch(err=>{

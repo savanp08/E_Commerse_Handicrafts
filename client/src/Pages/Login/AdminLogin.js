@@ -107,6 +107,19 @@ const AdminLogin = () => {
     window.location.replace(`QuickRoom/QuickUser/${roomId}/${tempUserId}/${tempName}`);
   }
 
+  function validatePassword(password){
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
+    if(!passwordRegex.test(password)){
+      var x= document.getElementById("pl0090-password-helperText");
+      x.innerHTML = "Password must contain atleast 1 uppercase, 1 lowercase, 1 number, and must be atleast 6 characters long";
+    }
+    else{
+      var x= document.getElementById("pl0090-password-helperText");
+      x.innerHTML = "";
+    }
+    return passwordRegex.test(password);
+  }
+
   return (
     <div className="login-wrap">
    
@@ -181,9 +194,12 @@ const AdminLogin = () => {
             onChange ={(e)=>{
               setPassword(e.target.value);
             }}
+            error={password && !validatePassword(password)}
       />
     </FormControl>
-    
+    <span className="login-helperText" id="pl0090-password-helperText">
+
+    </span>
       </div>
       <div className="login-otherOptionsWrap">
         
