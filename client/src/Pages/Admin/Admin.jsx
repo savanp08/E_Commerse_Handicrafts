@@ -129,7 +129,7 @@ const Admin =  () => {
           console.log("Debug-> FormData->",pair[0]+ ', ' + pair[1]); 
       }
       const Port ="http://localhost:5000";
-         await axios.post(`${Port}/Products/add`,
+         await axios.post(`/Products/add`,
          formData,
          {
           headers: {

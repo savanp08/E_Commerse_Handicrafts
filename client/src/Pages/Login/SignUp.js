@@ -56,7 +56,7 @@ const SignUp = () => {
       var CheckMessage="";
       var resp=null;
       var sts=403;
-      await  axios.post(`http://localhost:5000/Server/Auth/SignUp`,  {
+      await  axios.post(`/Server/Auth/SignUp`,  {
 
         user :{
         email:email,

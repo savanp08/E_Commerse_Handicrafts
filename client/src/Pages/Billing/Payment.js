@@ -28,7 +28,7 @@ useEffect(()=>{
   useEffect( ()=>{
     email = window.localStorage.getItem("email");
     email = JSON.parse(email);
-     axios.get(`${Port}/Server/Auth/USerData/${email}`)
+     axios.get(`Server/Auth/USerData/${email}`)
     .then(res=>{
       console.log("User data fetched", res.data);
         setUserData(res.data);
