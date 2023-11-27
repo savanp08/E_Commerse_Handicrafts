@@ -4,11 +4,11 @@ import {
     Routes,
     Route 
 } from 'react-router-dom';
-import ConsumerProfile from '../Pages/ConsumerProfile/ConsumerProfile.js';
+
 import Home from '../Pages/Home/Home.js';
 import Login from '../Pages/Login/Login.js';
 import Query from '../Pages/Query/Query.js';
-import SellerProfile from '../Pages/SellerProfile/SellerProfile.js';
+
 import SignUp from '../Pages/Login/SignUp.js';
 import Description from '../Pages/Description/Description.js';
 import Admin from '../Pages/Admin/Admin.jsx';

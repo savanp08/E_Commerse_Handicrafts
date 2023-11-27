@@ -17,7 +17,7 @@ const Home =() =>{
     const email = params.email || "";
     const [restaurantMap, setRestaurantsMap] = useState(new Map());
     const [restaurants, setRestaurants] = useState([]);
-
+    const [randomProds , setRandomProds] = useState([]);
    useEffect(()=>{
     async function fetchAllRestaurants(){
       await axios.get("/Restaurant/getAllRestaurants").then(res=>{
@@ -28,6 +28,20 @@ const Home =() =>{
                 res.data.forEach(restaurant => {
                        temp_map.set(restaurant._id , restaurant);
                 })
+                var prods_temp = [];
+                res.data.forEach((restaurant)=>{
+                  restaurant.menu.forEach((product)=>{
+                    prods_temp.push(product);
+                  })
+                })
+                var randomProdsX = [];
+                for(var i=0;i<5 && i<prods_temp.length;i++){
+                  var random = i;
+                  randomProdsX.push(prods_temp[random]);
+                }
+
+                setRandomProds(randomProdsX);
+                
                 console.log("Temp =>", temp_map)
                 setRestaurantsMap(new Map(temp_map));
                 setRestaurants(res.data);
@@ -42,12 +56,12 @@ const Home =() =>{
    console.log("Home debug =>", restaurants);
 
    const catagories =[ 
-    {name:'Sandwitch' , img:"https://vegmichigan.org/wp-content/uploads/2022/06/Odd-Burger-220x134.jpg"  ,url:"/Query/Decor"},
-    { name:"2Meal", img:'https://www.thedailymeal.com/img/gallery/what-was-the-first-restaurant-chain-in-america/intro-1670877532.jpg',url:"/Query/Painting" },
+    {name:'Sandwitch' , img:"https://vegmichigan.org/wp-content/uploads/2022/06/Odd-Burger-220x134.jpg"  ,url:"/Query/Sandwitch"},
+    { name:"2Meal", img:'https://www.thedailymeal.com/img/gallery/what-was-the-first-restaurant-chain-in-america/intro-1670877532.jpg',url:"/Query/2Meal" },
     {
         name:"Tacos",
         img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6KPvob0sGBIZjzCj0Ag6-MQ6RiX3TNxhMeg&usqp=CAU"
-        ,url:"/Query/Glass Crafts"
+        ,url:"/Query/Tacos"
     },
     {
       name:'Tamales',
@@ -62,11 +76,11 @@ const Home =() =>{
     {
         name:'Shrimp Noodles',
         img:'https://www.allrecipes.com/thmb/jiV_4f8vXFle1RdFLgd8-_31J3M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/229960-shrimp-scampi-with-pasta-DDMFS-4x3-e065ddef4e6d44479d37b4523808cc23.jpg'
-        ,url:"/Query/we"
+        ,url:"/Query/Shrimp Noodles"
     },
     {
         name:'Burger',
-        url:"/Query/Paper Crafts",
+        url:"/Query/Burger",
         img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF7JJbSrwAT62mYx84YBjyRtqCTomlNSFXhQ&usqp=CAU'
     },
     {
@@ -183,9 +197,9 @@ const Home =() =>{
          <div className="Home-MostPurchasedWrapper">
            <div className="Home-MostPurchasedContainer">
             {
-                restaurants && restaurants.length>0 && restaurants[0].menu.length>0?
+                randomProds?
                 ( 
-                  restaurants[0].menu.map((rest,key)=>{
+                  randomProds.map((rest,key)=>{
                     return(
                     <ProductCard product={rest} restaurant={restaurants[0]}/>
                     )

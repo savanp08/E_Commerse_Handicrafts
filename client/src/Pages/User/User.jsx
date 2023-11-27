@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router";
-import ProductCard from "../../Components/ProductCard/ProductCard";
+
 import mongoose from "mongoose";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,6 +44,7 @@ const User =  () => {
     const [SoldProducts,setSoldProducts] =useState([]);
     const [AddProductsForm,setAddProductForm] = useState(false);
     const [HelperText,setHelperText] = useState("");
+    const [totalsMap,setTotalsMap] = useState(new Map());
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -61,6 +62,14 @@ const User =  () => {
         SellerId:  user.email || ""
         
     });
+    function formatDate(inputDate) {
+      const date = new Date(inputDate);
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const year = date.getFullYear();
+    
+      return `${month}/${day}/${year}`;
+    }
     
  useEffect(()=>{
   async function verifyUser(){
@@ -75,7 +84,19 @@ const User =  () => {
    if(!user._id){
       verifyUser();
    }
- })
+ },[])
+  useEffect(()=>{
+    try{
+       if(user && user._id){
+        if(Array.isArray(user.OrderHistory)){
+          var x = new Map();
+
+        }
+       }
+    }catch(err){
+      console.log("error in useEffect ",err);
+    }
+  },[user]);
   if(!user || !user._id) return null
   return (
     <div className="Admin-Wrapper">
@@ -128,6 +149,7 @@ const User =  () => {
                             <div className="pu19-order-list-item-each">
                               <div className='pu19-order-list-item-each-header'>
                                 <span className="pu19-order-list-item-each-header-id">Order Total {item.total}</span>
+                                <span className="pu19-order-list-item-each-header-id">{formatDate(item.date)}</span>
                               </div>
                             <RestCompWithFilter key={index} restaurant={item.orderDetails.data} />
                             </div>

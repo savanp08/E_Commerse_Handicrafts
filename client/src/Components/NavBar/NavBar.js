@@ -37,6 +37,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [restauarantMap, setRestaurantsMap] = useState(new Map());
+  const [prodMap, setProdMap] = useState(new Map());
   const [restaurants, setRestaurants] = useState([]);
   async function searchFun(){
    if(SearchQuery && SearchQuery.length===0){
@@ -83,10 +84,17 @@ useEffect(()=>{
       console.log("Admin Fetch Restaurants Debug =>",res.data);
             
             var temp_map = new Map()
+            var prod_map = new Map()
             if(Array.isArray(res.data)){
               res.data.forEach(restaurant => {
                      temp_map.set(restaurant._id , restaurant);
               })
+              res.data.forEach(restaurant=>{
+                restaurant.menu.forEach(product=>{
+                  prod_map.set(product._id , product);
+                })
+              })
+              setProdMap(prod_map);
               console.log("Temp =>", temp_map)
               setRestaurantsMap(new Map(temp_map));
               setRestaurants(res.data);
@@ -96,20 +104,29 @@ useEffect(()=>{
     }) 
   }
   fetchAllRestaurants();
-   if(user && user._id){
-    var x = new Map();
-    if(Array.isArray(user.cart)){
-      user.cart.forEach((ele)=>{
-        if(restauarantMap.has(ele.restaurantId)){
-          x.set(ele._id,ele);
-        }
-      })
-    }
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXX =>",x)
-    setItemCount(x.size);
-          dispatch(addCart(Array.from(x.values())));
-   }
+   
 },[user])
+
+useEffect(()=>{
+  if(user && user._id){
+    if(restauarantMap.size>0 && prodMap.size>0){
+      if(user && user._id){
+        console.log("User found nav bar debug =>", user.cart);
+        var x = new Map();
+        if(Array.isArray(user.cart)){
+          user.cart.forEach((ele)=>{
+            if(restauarantMap.has(ele.restaurantId) && prodMap.has(ele._id)){
+              x.set(ele._id,ele);
+            }
+          })
+        }
+        console.log("XXXXXXXXXXXXXXXXXXXXXXXXX =>",x)
+        setItemCount(x.size);
+              dispatch(addCart(Array.from(x.values())));
+       }
+    }
+  }
+},[user,restauarantMap,prodMap])
   return(
     <div className="NavBar-Wrapper">
         <div className="NavBar-ContentType">

@@ -29,7 +29,7 @@ const restaurant_initialState ={
       apartment: "",
       city: "",
       state: "",
-      pinCode: "",
+      zipCode: "",
       coordinates: {
         lat: null,
         lng: null,
@@ -58,7 +58,7 @@ const user_initialSchema = {
       apartment: null,
       city: null,
       state: null,
-      pinCode: null,
+      zipCode: null,
       coordinates: {
         lat: null,
         lng: null

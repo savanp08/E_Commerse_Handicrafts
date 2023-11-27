@@ -38,7 +38,9 @@ function App() {
   
 
   return (
-    <div className="App-Wrapper">
+    <div className="App-Wrapper"
+    id="App-Wrapper"
+    >
        <Router>
       <div className='NavDiv-InApp'>
      <NavBar />

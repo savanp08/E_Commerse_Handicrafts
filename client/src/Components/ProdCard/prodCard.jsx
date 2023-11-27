@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../../Store/Slices/CartSlice/CartSlice';
 import { openForm } from '../../Store/Slices/FormSlice/FormSlice';
 import './This.css';
+import '../ProductCard/ProductCard.scss';
 import { addRestaurant } from '../../Store/Slices/restaurantSlice/restaurantSlice';
 import { restaurant_initialState } from '../../Data/Schemas';
 import { addProduct } from '../../Store/Slices/ProductSlice/ProductSlice';
@@ -36,7 +37,7 @@ useEffect(()=>{
 
     }
 },[product,cart])
-    var Product=product;
+    var Product= JSON.parse(JSON.stringify(product));
     console.log(Product);
 if(Product &&  Product.Media && Product.Media[0])
 var x=5;
@@ -48,17 +49,31 @@ var Media=[""];
 if(Product && Product.Media && Product.Media[0])
 Media=Product.Media;
 if(Product.Rating<=0) Product.Rating=1;
-
+if(Product){
+    var tempRating = 0;
+    var tempCount = 0;
+    try{
+    Array.from(Product.reviews).forEach((item)=>{
+       tempRating+=item.rating/1;
+       tempCount++;
+    });
+}catch(err){
+    console.log("error in product card ",err);
+}
+    Product.Rating=tempRating/tempCount;
+ }
 
 async function AddToCartProduct(ProductX){
     var Product = {...ProductX};
-    Product.Quantity = Count+0;
+    Product.Quantity = Count/1;
     var tUser = {...user};
     var temp_map = new Map();
     Array.from(cart).forEach((item)=>{
         temp_map.set(item._id,item);
     })
+    if(Count>0)
     temp_map.set(Product._id,Product);
+    else temp_map.delete(Product._id);
     tUser.cart = Array.from(temp_map.values());
 
     if(user && user._id){
@@ -90,7 +105,7 @@ async function deleteCard(){
 
 
 }
-
+const address = restaurant? restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.zipCode : "";
 if(type && type==="admin")
 return (
     <div className="ProductCard-Wrapper">
@@ -102,38 +117,37 @@ return (
         >
         <img src={Media[0]} alt="NA" className='ProductCard-LeftWrapper'/>
         <div className="ProductCard-RightWrapper">
+        <div className="ProductCard-MainInfo-Wrapper">
+            <div className='ProductCard-group-wrap'>
          <span className="ProductCard-Name">
             {Product.FullName}
          </span>
-         <div className="ProductCard-MainInfo-Wrapper">
-         <div className="ProductCard-Rating">
-         <Rating name="half-rating" defaultValue={0} precision={Product.Rating} readOnly/>
+         <span className='ProductCard-location-text'>{address}</span>
          </div>
-         <div className="ProductCard-Price">
-             $ : {Product.Price}
+         
+         <div className="ProductCard-group-wrap">
+         <span className='ProductCard-rating-text'>{Product.Rating}</span>
+         
+         <span className="ProductCard-Price">
+              {Product.Price}$
+         </span>
          </div>
          </div>
-         <div className="ProductCard-Description">
-            {Description[0]}
-            </div>
+        
         </div>
         </div>
         <div className="ProductCard-BackSideWrapper">
             <div className="ProductCard-BackSide-TopWrapper">
                 
-                   <div className="ProductCard-BackSide-ProductSeller" sx={{ color:'white' }}>
-                   Quantity : {Product.Quantity}
+                   <div className="ProductCard-BackSide-product-description" sx={{ color:'white' }}>
+                   {product.Description[0]}
                    </div>
-                   <div className="ProductCard-BackSide-ProductSeller" sx={{ color:'white' }}>
-                   Sold : {Product.ProductsSold}
-                   </div>
-                   <div className="ProductCard-BackSide-ProductDescription" sx={{ color:'white' }}>
-                    {Description[0]}
-                   </div>
+                   
             </div>
             <div className="ProductCard-BackSide-BottomWrapper">
-            <div className="Description-Top-Right-Bottom _300px">
-            <div className="DescriptionPage-QuantityWrapper InProductCardQuantityWrapper">
+            <div className="cpc00011-back-inner-bottom-wrap">
+            <div className="cpc00011-cart-buttons-wrap">
+            <div className='cpc00011-cart-quant-btn-wrap'>
             <div className="DescriptionPage-QuantityButtons Incr"
             onClick={()=>{
                setCount(Count+1);
@@ -152,22 +166,24 @@ return (
             >
             -
             </div>
-            <span className="Description-AddCart-Button CustomButton-GeneralProperties"  
+            </div>
+            <button className="ppc90-addtocart-button"  
             onClick={()=>{
                 AddToCartProduct(Product);
               
             }}
             >
                Add To Cart
-            </span>
+            </button>
             </div>
          <div className="DescriptionPage-AddToCart">
             
-            <div className="Description-AddCart-Button ProductCart-ViewProductButton CustomButton-GeneralProperties" onClick={()=>{
-            
+            <button className="ppc90-addtocart-button" 
+            onClick={()=>{
+            navigate('/Description/'+product._id +"/"+product.restaurantId)
           }} >
             View Product
-          </div>
+          </button>
          </div>
          </div>
             </div>
@@ -202,88 +218,88 @@ return (
 else 
 return(
     <div className="ProductCard-Wrapper">
-    <div className="ProductCard-Container">
-    <div className="ProductCard-FrontSideWrapper"
-    onClick={()=>{
-        window.location.replace(`/Description/${product.productId}`)
-      }}
-    >
-    <img src={Media[0]} alt="NA" className='ProductCard-LeftWrapper'/>
-    <div className="ProductCard-RightWrapper">
-     <span className="ProductCard-Name">
-        {Product.FullName}
-     </span>
-     <div className="ProductCard-MainInfo-Wrapper">
-     <div className="ProductCard-Rating">
-     <Rating name="half-rating" defaultValue={0} precision={Product.Rating} readOnly/>
-     </div>
-     <div className="ProductCard-Price">
-         $ : {Product.Price}
-     </div>
-     </div>
-     <div className="ProductCard-Description">
-        {Description[0]}
+        <div className="ProductCard-Container">
+        <div className="ProductCard-FrontSideWrapper"
+        onClick={()=>{
+           navigate('/Description/'+product._id);
+          }}
+        >
+        <img src={Media[0]} alt="NA" className='ProductCard-LeftWrapper'/>
+        <div className="ProductCard-RightWrapper">
+        <div className="ProductCard-MainInfo-Wrapper">
+            <div className='ProductCard-group-wrap'>
+         <span className="ProductCard-Name">
+            {Product.FullName}
+         </span>
+         <span className='ProductCard-location-text'>{address}</span>
+         </div>
+         
+         <div className="ProductCard-group-wrap">
+         <span className='ProductCard-rating-text'>{Product.Rating}</span>
+         
+         <span className="ProductCard-Price">
+              {Product.Price}$
+         </span>
+         </div>
+         </div>
+        
         </div>
-    </div>
-    </div>
-    <div className="ProductCard-BackSideWrapper">
-        <div className="ProductCard-BackSide-TopWrapper">
+        </div>
+        <div className="ProductCard-BackSideWrapper">
+            <div className="ProductCard-BackSide-TopWrapper">
+                
+                   <div className="ProductCard-BackSide-product-description" sx={{ color:'white' }}>
+                   {product.Description[0]}
+                   </div>
+                   
+            </div>
+            <div className="ProductCard-BackSide-BottomWrapper">
+            <div className="cpc00011-back-inner-bottom-wrap">
+            <div className="cpc00011-cart-buttons-wrap">
+                <div className='cpc00011-cart-quant-btn-wrap'>
+            <div className="DescriptionPage-QuantityButtons Incr"
+            onClick={()=>{
+               setCount(Count+1);
+            }}
+            >
+            +
+            </div>
+            <span className="Description-Count">
+            {Count}
+            </span>
             
-               <div className="ProductCard-BackSide-ProductSeller" sx={{ color:'white' }}>
-               Quantity : {Product.Quantity}
-               </div>
-               <div className="ProductCard-BackSide-ProductSeller" sx={{ color:'white' }}>
-               Sold : {Product.ProductsSold}
-               </div>
-               <div className="ProductCard-BackSide-ProductDescription" sx={{ color:'white' }}>
-                {Description[0]}
-               </div>
+            <div className="DescriptionPage-QuantityButtons Decr"
+             onClick={()=>{
+               setCount(Count-1);
+            }}
+            >
+            -
+            </div>
+            </div>
+            <button className="ppc90-addtocart-button"  
+            onClick={()=>{
+                AddToCartProduct(Product);
+              
+            }}
+            >
+               Add To Cart
+            </button>
+            </div>
+         <div className="DescriptionPage-AddToCart">
+            
+            <button className="ppc90-addtocart-button" 
+            onClick={()=>{
+            navigate('/Description/'+product._id +"/"+product.restaurantId)
+          }} >
+            View Product
+          </button>
+         </div>
+         </div>
+            </div>
         </div>
-        <div className="ProductCard-BackSide-BottomWrapper">
-        <div className="Description-Top-Right-Bottom _300px">
-        <div className="DescriptionPage-QuantityWrapper InProductCardQuantityWrapper">
-        <div className="DescriptionPage-QuantityButtons Incr"
-        onClick={()=>{
-           setCount(Count+1);
-        }}
-        >
-        +
         </div>
-        <span className="Description-Count">
-        {Count}
-        </span>
-        
-        <div className="DescriptionPage-QuantityButtons Decr"
-         onClick={()=>{
-           setCount(Count-1);
-        }}
-        >
-        -
-        </div>
-        <span className="Description-AddCart-Button CustomButton-GeneralProperties"  
-        onClick={()=>{
-            AddToCartProduct(Product);
-          
-        }}
-        >
-           Add To Cart
-        </span>
-        </div>
-     <div className="DescriptionPage-AddToCart">
-        
-        <div className="Description-AddCart-Button ProductCart-ViewProductButton CustomButton-GeneralProperties" 
-        onClick={()=>{
-        navigate('/Description/'+product._id +"/"+product.restaurantId);
-      }} >
-        View Product
-      </div>
-     </div>
-     </div>
-        </div>
+      
     </div>
-    </div>
-  
-</div>
 )
 
 }

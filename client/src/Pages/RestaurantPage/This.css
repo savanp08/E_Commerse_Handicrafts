@@ -10,7 +10,9 @@
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     margin-top: 50px;
     min-width: 280px;
+    background-color: white;
 }
+
 .prp15-title-wrap{
     display: flex;
     flex-flow: row wrap;
@@ -19,7 +21,6 @@
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
-
 }
 
 .prp15-media-compile-wrap{
@@ -77,8 +78,8 @@
 }
 .prp15-restaurant-info-wrap{
     display: flex;
-    flex-flow: column wrap;
-    justify-content: space-around;
+    flex-flow: row wrap;
+    justify-content: space-between;
     align-items: flex-start;
     width: 100%;
     
@@ -168,4 +169,15 @@
     font-weight: 600;
     color: rgb(86, 207, 86);
     text-align: center;
+}
+
+.prp15-restaurant-reviews-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 170px;
+    min-height: 40px;
+
+
 }

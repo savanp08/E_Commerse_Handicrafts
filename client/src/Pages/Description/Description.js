@@ -1,21 +1,26 @@
 import axios from "axios";
 import React, { useState , useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import './Description.scss';
 import Rating from '@mui/material/Rating';
 import { useDispatch, useSelector } from "react-redux";
 import { restaurant_initialState } from "../../Data/Schemas";
 import { addCart } from "../../Store/Slices/CartSlice/CartSlice";
-
+import {
+   product_initialState,
+} from "../../Data/Schemas";
 
 const Description = () =>{
 
    const [Product,setProduct]=useState();
    const [Count,setCount] = useState(1);
    const [DisplayReviewForm,setDisplayReviewForm] = useState(false);
+   const cart = useSelector(state=>state.cart);
    const params= useParams();
    const productId = params.id;
-   const cart = useSelector(state=>state.cart);
+   const [rating,setRating] = useState(0);
+   const [numOfReviews,setNumOfReviews] = useState(0);
+   const navigate = useNavigate();
 const user= useSelector(state=>state.user);
 const admin= useSelector(state=>state.admin);
 const restId = params.restId;
@@ -23,23 +28,55 @@ const [restauarant , setRestaurant] = useState({
    restaurant_initialState
 });
 
-async function submitReview(){
+function hasRated(){
+   if(user && user._id){
+      var temp_map = new Map();
+      Array.from(Product.reviews).forEach((item)=>{temp_map.set(item.userId,item);});
+      if(temp_map.has(user._id)) return true;
+   }
+   return false;
+}
+async function submitReview(rating){
   var menu = [];
+  var flag = hasRated();
+   if(flag){
    for(var i=0;i<restauarant.menu.length;i++){
       if(restauarant.menu[i]._id===Product._id){
          restauarant.menu[i]={
             ...Product,
-            Rating:(Product.Rating/1)+(restauarant.menu[i].Rating/1),
-            NumberOfRatings:1+(restauarant.menu[i].NumberOfRatings/1),
-
+           reviews:Product.reviews.map((item)=>{
+               if(item.userId===user._id){
+                   return {
+                     ...item,
+                     rating:rating
+                   }
+               }
+               else{
+                   return item;
+               }
+             })
          }
          break;
       }
    }
-   await axios.post("/Restaurant/updateOne", {
+}
+else{
+   Product.reviews.push({
+      userId:user._id,
+      rating:rating
+   })
+   for(var ii=0;ii<restauarant.menu.length;ii++){
+      if(restauarant.menu[ii]._id===Product._id){
+         restauarant.menu[ii]={
+            ...Product,
+            reviews:Product.reviews
+         }
+         break;
+      }
+   }
+}
+   await axios.post("/Restaurant/editRestaurant", {
       ...restauarant,
-
-
    }).then(res=>{
        console.log("response from update user ",res);
    
@@ -58,6 +95,7 @@ const dispatch = useDispatch();
          .then(res=>{
              console.log("response from get one restaurant ",res);
              if(res.status===200){
+
                  setRestaurant(res.data);
                  setProduct(res.data.menu.find((product)=>{
                     return product._id===productId;
@@ -72,6 +110,31 @@ const dispatch = useDispatch();
   fetchOneRest() 
    },[])
 
+   useEffect(()=>{
+      if(cart && Product){
+         var temp_map = new Map();
+         Array.from(cart).forEach((item)=>{
+             temp_map.set(item._id,item);
+         })
+         if(temp_map.has(Product._id)){
+            setCount(temp_map.get(Product._id).Quantity);
+         }
+         else{
+            setCount(1);
+         }
+      }
+      if(Product){
+         var tempRating = 0;
+         var tempCount = 0;
+         Array.from(Product.reviews).forEach((item)=>{
+            tempRating+=item.rating/1;
+            tempCount++;
+         });
+         setRating(tempRating/tempCount);
+         setNumOfReviews(tempCount);
+      }
+
+   },[cart, Product])
 
 
  
@@ -104,8 +167,25 @@ if(Product){
    return(
     <div className="DescriptionWrapper">
       <div className ="DescriptionPage-TopDetails">
-      <div className="Description-FullName">Product: {Product.FullName}</div>
-      <div className="Description-FullName">Sold by : {Product.SellerId}</div>
+      <div className="Description-FullName prevent-text-overflow-without-width">Product: {Product.FullName}</div>
+      <div className="Description-Rest-Desc-wrap">
+      <span className="Description-FullName prevent-text-overflow-without-width" 
+      style={{
+         textAlign: "center",
+         display: "flex",
+         flexFlow:"row wrap",
+      }}
+      >Sold by : 
+      <span className="Description-FullName prevent-text-overflow-without-width" style={{color:'blue',cursor:'pointer'}}
+      onClick={(e)=>{
+         navigate("/restaurant/"+restId);
+      }}
+      >
+      {restauarant.restaurantName}
+      </span>
+      </span>
+
+      </div>
       {/* <div className="Description-FullName">{Product.FullName}</div> */}
       </div>
      <div className="Description-Top">
@@ -120,29 +200,15 @@ if(Product){
              <div className="Description-Top-Right-Rating">
              <Rating name="half-rating" 
              onChange={(e)=>{
-               var val  = e.target.value/1;
-                  console.log("rating changed ",val);
-                  if(user && user._id){
-                     var userReviewd = false;
-                     var temp_map = new Map();
-                     Array.from(user.reviews).forEach((item)=>{
-                        temp_map.set(item._id,item);
-                     });
-                     if(temp_map.has(Product._id)) 
-                     userReviewd = true;
-                  if(!userReviewd){
-                  setProduct({...Product, 
-                     Rating:(e.target.value)/1
-                  ,NumberOfRatings:1
-                  });
-               }
-               }
-               else{
+               if(!user || !user._id) {
                   alert("Please Login to review");
+                  return;
                }
+               submitReview(e.target.value)
              }}
-             defaultValue={(Product.Rating/1)/(Product.NumberOfRatings)} precision={1}/>
-             {`(${Product.NumberOfRatings})`}
+             value={rating}
+             />
+             {`(${numOfReviews})`}
          </div>
          </div>
          <div className="Description-Top-Right-Bottom">
@@ -184,7 +250,8 @@ if(Product){
      <div className="Description-SubmitReviewWrapper">
       <div className="Description-SubmitReviewButton CustomButton-GeneralProperties"
       onClick={()=>{
-         submitReview();
+
+       
       }}
       >
          Submit Review

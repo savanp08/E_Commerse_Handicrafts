@@ -7,6 +7,9 @@
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
+  transition: background-image 3s;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .NavDiv-InApp{
   width: 100%;

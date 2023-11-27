@@ -31,7 +31,7 @@ const RestauCardForProduct = ({restaurant,productsMap}) => {
 
     }
     async function editRest(){
-        await axios.put("/Restaurant/editRestaurant",{
+        await axios.post("/Restaurant/editRestaurant",{
             ...restaurant,
         }).then(res=>{
             console.log("response from edit ",res);
@@ -66,30 +66,39 @@ const RestauCardForProduct = ({restaurant,productsMap}) => {
 
     },[search,prodMap,restaurant])
 
-    if(!restaurant) return (<div>loading...</div>)
+    if(!restaurant) return (<div></div>)
     console.log("restaurant in restauCardForProduct ",restaurant);
-    const Address = restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.pinCode;
+    const Address = restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.zipCode;
+    var restTypes =""
+    if(restaurant.types){
+    for(let i=0;i<restaurant.types.length;i++){
+        restTypes += restaurant.types[i].label + ", ";
+    }
+}
   return (
     <div className="carcfp34-main-wrap">
         <div className='carcfp34-rest-main-wrap'>
         <div className="carcfp34-details-wrap">
            <div className='carcfp34-restaurant-group-wrap'> 
-      <span className='carcfp34-restaurant-name'>{restaurant.restaurantName}</span>
-      <span className='carcfp34-restaurant-address'>{Address}</span>
+           <div className='carcfp34-restaurant-group-wrap-column'>
+      <span className='carcfp34-restaurant-name prevent-text-overflow-without-width'>{restaurant.restaurantName}</span>
+      <span className='crc25-restaurant-types crc25-text-general prevent-text-overflow-without-width'>{restTypes}</span>
+      <span className='carcfp34-restaurant-address prevent-text-overflow-without-width'>{Address}</span>
+        </div>
       </div>
       <div className='carcfp34-restaurant-group-wrap'>
         <div className='carcfp34-restaurant-rating'>
         <Rating
         name="simple-controlled"
-        value={restaurant.rating || (Math.random()*5 + 1).toFixed(1)}
+        value={restaurant.rating }
         readOnly
         
       />
         </div>
-        <span className='carcfp34-restaurant-rating-count'>({restaurant.num_ratings || (Math.floor(Math.random() * (70 - 25 + 1)) + 25)})</span>
+        <span className='carcfp34-restaurant-rating-count'>({restaurant.num_ratings})</span>
         
         </div>
-        <span className='carcfp34-restaurant-menu-count'> Menu Items: {restaurant.menu.lenght}</span>
+        <span className='carcfp34-restaurant-menu-count'> Menu Items: {restaurant.menu.length}</span>
         </div>
        
        </div>

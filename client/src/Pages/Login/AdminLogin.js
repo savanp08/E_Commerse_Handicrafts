@@ -109,13 +109,7 @@ const AdminLogin = () => {
 
   return (
     <div className="login-wrap">
-    <div className="login-sideStyleWrap">
-        <img className="login-sideStyleImg"
-        src="https://i.pinimg.com/originals/72/c5/e8/72c5e850e209ee68d4a7df97ddb59302.jpg" />
-        <span className="login-sideText">
-            Order your favourites from your favourite
-        </span>
-    </div>
+   
   <div className="login-container">
     <div className="login-titleWrap">
   <span className="login-title">
@@ -205,7 +199,7 @@ const AdminLogin = () => {
         width:'250px',
         height:'40px',
         borderRadius:'40px',
-        backgroundColor:'rgb(142, 176, 179)',
+        backgroundColor:'red',
         display:'flex',
         flexFlow:'row wrap',
         justifyContent: 'center',

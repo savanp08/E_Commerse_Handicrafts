@@ -153,8 +153,9 @@ restaurantRouter.post("/editRestaurant", async(req,response)=>{
         var id=req.body._id;
         delete x._id;
          console.log("Edit rest fired",req.body);
-         await restaurantSchema.updateOne({_id : id},{
+         await restaurantSchema.updateOne({_id : id},{$set:{ 
                 ...x
+         }
             }).then(res=>{
                 console.log("Edited rest",res);
                 return response.status(200).send(res);

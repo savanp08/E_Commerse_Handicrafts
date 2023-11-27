@@ -11,3 +11,22 @@
     width: 100%;
     cursor: pointer;
 }
+
+.carcfp34-restaurant-name{
+    font-size: 21px;
+    font-weight: 600;
+    color: red;
+}
+
+.crc25-restaurant-types{
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    max-width: 230px;
+}
+
+.carcfp34-restaurant-address{
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+}

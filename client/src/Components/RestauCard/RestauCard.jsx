@@ -33,25 +33,34 @@ const RestauCard = ({restaurant}) => {
 
     if(!restaurant) return (<div>loading...</div>)
     console.log("restaurant in restauCard ",restaurant);
-    const Address = restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.pinCode;
+    const Address = restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.zipCode;
+    var restTypes =""
+    if(restaurant.types){
+    for(let i=0;i<restaurant.types.length;i++){
+        restTypes += restaurant.types[i].label + ", ";
+    }
+}
   return (
     <div className="crc25-main-wrap">
         <div className="crc25-details-wrap">
-            <div className='crc25-restaurant-group-wrap'>
-            <span className='crc25-restaurant-nameH'>Located at</span>
-      <span className='crc25-restaurant-name crc25-text-general'>{restaurant.restaurantName}</span>
+            <div className='crc25-restaurant-group-wrap-column'>
+          
+      <span className='crc25-restaurant-name crc25-text-general prevent-text-overflow-without-width'>{restaurant.restaurantName}</span>
       </div>
-      <span className='crc25-restaurant-address crc25-text-general'>{Address}</span>
+      <div className='crc25-restaurant-group-wrap-column'>
+        <span className='crc25-restaurant-types crc25-text-general prevent-text-overflow-without-width'>{restTypes}</span>
+      <span className='crc25-restaurant-address crc25-text-general prevent-text-overflow-without-width'>{Address}</span>
+      </div>
       <div className='crc25-restaurant-ratings-wrap'>
         <div className='crc25-restaurant-rating'>
         <Rating
         name="simple-controlled"
-        value={restaurant.rating || (Math.random()*5 + 1).toFixed(1)}
+        value={restaurant.rating}
         readOnly
         
       />
         </div>
-        <span className='crc25-restaurant-rating-count'>({restaurant.num_ratings || (Math.floor(Math.random() * (70 - 25 + 1)) + 25)})</span>
+        <span className='crc25-restaurant-rating-count'>({restaurant.num_ratings})</span>
         
         </div>
         <div className='crc25-restaurant-group-wrap'>

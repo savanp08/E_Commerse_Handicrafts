@@ -2,14 +2,14 @@ import transport from "../MiddleWares/NodeMailer.js";
 
 async function sendSignUpConfirmationMail(user){
 
-    try{
-      transport().then((transportX) => {
+    try{ 
+      transport().then((transportX) => { 
         const mailOptions = {
             from : process.env.google_email,
             to : user.email,
-            subject : "Welcome to the Lost & Found",
-            text : `Welcome to the Community ${user.name}`,
-            html : `<span> <a href="http://localhost:3000/user/verifyAccount?email=${user.email}" >verify </a> the email to finish signing up to Lost & Found</span>`
+            subject : "Welcome to the Troo",
+            text : `Welcome to the Troo ${user.name}`,
+            html : `<span> <a href="http://localhost:3000/user/verifyAccount?email=${user.email}" >verify </a> the email to finish signing up to Troo</span>`
             
         };
         transportX.sendMail(mailOptions, (err, info) => {
@@ -34,7 +34,7 @@ async function sendPasswordResetMail(user){
     try{
         transport().then((transportX) => {
             const mailOptions = {
-                from : `Lost & Found || ${process.env.google_email}`,
+                from : `Troo || ${process.env.google_email}`,
                 to : user.email,
                 subject : "Password Reset",
                 text : `Hi User,

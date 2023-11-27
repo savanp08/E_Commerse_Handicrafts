@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import RestCompWithFilter from "../../Components/RestCompWithFilter/RestCompWithFilter";
 import ProductCard from "../../Components/ProductComponent/prodCard";
 import axios from "axios";
 import { restaurant_initialState } from "../../Data/Schemas";
 import { useParams } from "react-router";
 import './This.css';
+import { Rating } from "@mui/material";
+import { openForm } from "../../Store/Slices/FormSlice/FormSlice";
+import Restreviews from "../../Components/RestReviews/Restreviews";
 
 const RestaurantPage = () =>{
 
@@ -16,7 +19,7 @@ const RestaurantPage = () =>{
     const user = useSelector(state=>state.user);
    const [restaurant,setRestaurant] = useState(rest || restaurant_initialState);
    const [mediaMix,setMediaMix] = useState([]);
-
+   const dispatch = useDispatch();
 
    useEffect(()=>{
     if(rest && rest._id){
@@ -55,6 +58,116 @@ const RestaurantPage = () =>{
      fetchOneRest() 
     },[])
 
+    function userHasRated() {
+        try{
+        if (!user) return true;
+        if (!user.ratings) return true;
+        if (!restaurant || !restaurant._id) return true;
+        var flag=false;
+        for(var i=0; i<user.ratings.length; i++){
+            try{
+            if(user.ratings[i].restaurantId === restaurant._id){
+                flag=true;
+                break;
+            }
+        }catch(err){console.log("Err while looping on restaurant user ratings",err)}
+        }
+        console.log("User has rated?",flag,user.ratings, restaurant._id);
+        return flag;
+        }catch(err){
+            console.log("Error while checking if user rated",err);
+        }
+    }
+
+    async function updateUserRating(rating,rated){
+        if(!user || !user._id) return;
+        var tempuser = JSON.parse(JSON.stringify(user));
+        var flag=false;
+        for(var i =0;i<tempuser.ratings.length;i++){
+            try{
+            if(tempuser.ratings[i].restaurantId === restaurant._id){
+                tempuser.ratings[i].rating = rating;
+                flag=true;
+                break;
+            
+            }
+        }catch(err){
+            console.log("Err while looping on restaurant user ratings",err);
+        }
+    }
+        if(!flag){
+            tempuser.ratings.push({
+                restaurantId: restaurant._id,
+                rating: rating,
+            })
+        }
+          await axios.post("/Auth/updateOne",{
+
+            ...tempuser,
+           
+            
+
+
+          }).then(res=>{
+                console.log("response from update user rating ",res);
+            
+
+          }).catch(err=>{
+                console.log("error from update user rating ",err);
+          
+          })
+    }
+
+    async function updateRest(rating,rated){
+        var rest = restaurant
+         var userRating = 0;
+         if(rated){
+            for(var i=0;i<user.ratings.length;i++){
+                if(user.ratings[i].restaurantId === restaurant._id){
+                    userRating = user.ratings[i].rating;
+                    break;
+                }
+            }
+         }
+            var num_ratings = restaurant.num_ratings;
+            if(!rated){
+                num_ratings++;
+            }
+            var newRating = (restaurant.rating/1 - userRating/1 + rating/1);
+          try{
+            console.log("updating rest ",rest,newRating,userRating,rating,num_ratings);
+                 await  axios.post("/Restaurant/editRestaurant",{
+                    ...rest,
+                    rating: newRating,
+                    num_ratings: num_ratings,
+                  }).then(res=>{
+                        console.log("response from update rest ",res);
+
+                  }).catch(err=>{
+                        console.log("error from update rest ",err);
+                  
+                  })
+          }catch(err){
+                console.log("error from update rest ",err);
+          }
+    }
+
+    async function updateRestReviews(rest){
+        try{
+          await   axios.post("/Restaurant/editRestaurant",{
+              ...rest
+            }).then(res=>{
+                  console.log("response from update rest ",res);
+
+            }).catch(err=>{
+                  console.log("error from update rest ",err);
+            
+            })
+        }catch(err){
+                console.log("error from update rest ",err);
+        }
+    }
+
   useEffect(()=>{
     if(restaurant && restaurant._id){
       var x = new Map();
@@ -70,6 +183,7 @@ const RestaurantPage = () =>{
     console.log("restaurant in restaurant page ",restaurant);
     return(
         <div className="prp15-main-wrap">
+           
            <div className="prp15-title-wrap">
             <div className="prp15-media-compile-wrap">
                <div className="prp15-media-compile-inner-wrap0">
@@ -112,12 +226,70 @@ const RestaurantPage = () =>{
                         <span className="prp15-restaurant-group-text">Mon-Fri 9 AM to 10 PM</span>
                     </div>
                     <div className="prp15-restaurant-group-wrap2">
-                        <span className="prp15-restaurant-group-text prp15-rating-text">{restaurant.rating || ((Math.random() * (5 - 2) + 2).toFixed(1))}</span>
-                        <span className="prp15-restaurant-group-text">({restaurant.num_ratings || (Math.floor(Math.random()*50 + 25))})</span>
+                        <Rating
+                            name="simple-controlled"
+                            value={(restaurant.rating/1)/(restaurant.num_ratings/1)}
+                            readOnly={user._id? false : true}
+                            onClick={(e)=>{
+                                if(!user || !user._id) {
+                                    alert("Please Login to rate");
+                                }
+                            }}
+                            onChange={(e)=>{
+                                if(!user || !user._id) {
+                                    alert("Please Login to rate");
+                                    return;
+                                }
+                                console.log("rating ",e.target.value);
+                                
+                                
+                                var rated  = userHasRated()
+                                   updateRest(e.target.value, rated);
+                                    updateUserRating(e.target.value,rated);
+                                
+                            }
+                            }
+                        />
+                        <span className="prp15-restaurant-group-text">({restaurant.num_ratings})</span>
                     </div>
                 </div>
-
+              <div className="prp15-restaurant-reviews-wrap">
+                <div className="prp15-restaurant-reviews-inner-wrap">
+                     {
+                            restaurant && restaurant.reviews && restaurant.reviews.length>0? (
+                                restaurant.reviews.map((review,key)=>{
+                                    return(
+                                        <div className="prp15-restaurant-review-wrap" key={key}>
+                                            
+                                            {/* <span className="prp15-restaurant-review-text">{review.name}</span>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={review.rating/1}
+                                                readOnly
+                                            />
+                                            <span className="prp15-restaurant-review-text">{review.text}</span> */}
+                                        </div>
+                                    )
+                                })
+                            ): null
+                     }
+                </div>
+                <div className="prp15-restaurant-reviews-option-wrap">
+                    <span className="prp15-restaurant-reviews-option-text"
+                    
+                    onClick={(e)=>{
+                        
+                            dispatch(openForm({
+                                formName:"reviews",
+                                data:null
+                            }))
+                    }}
+                    >View Reviews</span>
+                </div>
+                
+              </div>
             </div>
+            <Restreviews restaurant={restaurant} user={user}/>
             <div className="prp15-restaurant-featured-list-wrap">
 
             </div>

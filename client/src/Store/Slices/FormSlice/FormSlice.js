@@ -23,6 +23,10 @@ const initialState = {
         isOpen: false,
         data:null,
     },
+    reviews:{
+        isOpen: false,
+        data:null,
+    }
 };
 
 const formSlice = createSlice({

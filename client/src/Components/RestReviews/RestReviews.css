@@ -1,0 +1,108 @@
+.crr003-main-wrap{
+    display: flex;
+    position: sticky;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    left: 0px;
+    box-shadow: 0px 0px 8px 1.5px rgba(0,0,0,0.4);
+    z-index: 11;
+    overflow-y: auto;
+    min-height: 300px;
+    min-width: 300px;
+    max-width: 800px;
+    align-self: center;
+    padding: 10px;
+}
+
+.crr003-close-wrap{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+justify-content: flex-end;
+align-items: flex-start;
+}
+.crr003-close-button{
+    font-size: 21px;
+    font-weight: 700;
+    color: red;
+    cursor: pointer;
+}
+
+.crr003-add-review-wrap{
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.crr003-add-review-form-inner-wrap{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.crr003-add-review-button{
+    width: 100%;
+    max-width: 120px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+}
+
+.crr003-reviews-list-wrap{
+margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.crr003-add-review-form-input{
+    
+}
+
+.crr003-add-review-form-submit-button{
+    width: 100%;
+    max-width: 120px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+}
+
+.crr003-review-wrap{
+    min-width: 300px;
+    width: 100%;
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.prp15-restaurant-reviews-option-text{
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    color: green;
+}

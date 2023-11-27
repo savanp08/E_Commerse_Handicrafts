@@ -41,11 +41,11 @@ mongoose.connect( process.env.DbUri,
         useNewUrlParser: true,  
     useUnifiedTopology: true
     }
-    )
-.catch((error) => {
-    console.log(error.message);
+    ) 
+.catch((error) => {   
+    console.log(error.message); 
 });
-
+ 
 const DBconnection = mongoose.connection;  
 DBconnection.once('open',   ()=> {
     console.log(`Data Base Connection Established Successfully`);

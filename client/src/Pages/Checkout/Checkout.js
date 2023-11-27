@@ -18,6 +18,7 @@ const Checkout = () => {
         ...user_initialSchema.location,
         mobile:""
     });
+    const [Address  , setAddress] = useState("");
     const checkout = useSelector(state=>state.checkout);
     const [restaurant, setRestaurant] = useState(null);
     const [orderType, setOrderType] = useState("delivery"); 
@@ -42,6 +43,16 @@ const Checkout = () => {
                 if(res.status===200){
                     setRestaurant(res.data);
                    
+                   if(res.data && res.data.location){
+                    var add="";
+                    if(res.data.location.street1) add+=res.data.location.street1;
+                    if(res.data.location.street2) add+=" "+res.data.location.street2;
+                    if(res.data.location.apartment) add+=" "+res.data.location.apartment;
+                    if(res.data.location.city) add+=" "+res.data.location.city;
+                    if(res.data.location.state) add+=" "+res.data.location.state;
+                    if(res.data.location.zipCode) add+=" "+res.data.location.zipCode;
+                    setAddress(add);
+                   }
                 }
                 
             }).catch(err=>{
@@ -192,7 +203,7 @@ const Checkout = () => {
                   <div className="carc23-item-location-box carc23-apartment">
                     <TextField
                       id="report-item-location-apartment"
-                      label="Apartment"
+                      label="County"
                       variant="outlined"
                       value={displayAddress.apartment || ""}
                       sx={{
@@ -242,9 +253,9 @@ const Checkout = () => {
                       }}
                     />
                   </div>
-                  <div className="carc23-item-location-box carc23-pincode">
+                  <div className="carc23-item-location-box carc23-zipCode">
                     <TextField
-                      id="report-item-location-pinCode"
+                      id="report-item-location-zipCode"
                       label="Pin Code"
                       variant="outlined"
                       required
@@ -291,7 +302,7 @@ const Checkout = () => {
                         <span className="pc17-content-pickup-location-text">
                             {
                                 restaurant && restaurant.location? (
-                                    restaurant.location.street1 + ", " + restaurant.location.street2 + ", " + restaurant.location.city + ", " + restaurant.location.state + " - " + restaurant.location.zipCode
+                                   Address
                                 ) : ""
                             }
                         </span>
@@ -351,7 +362,7 @@ const Checkout = () => {
                         <div className="pc17-content-payment-input-wrap">
                             <div className="pc17-content-payment-input-box">
                                 <TextField
-                                id="report-item-location-pinCode"
+                                id="report-item-location-zipCode"
                                 label={"Card Number" +  (cardDetails.cardNumber.length>0? " (" + detectCardType(cardDetails.cardNumber) + ")" : "")}
                                 error={ validateLuhnAlgorithm(cardDetails.cardNumber) ? false : true}
                                 helperText={ validateLuhnAlgorithm(cardDetails.cardNumber) ? "" : "Invalid Card Number"}
@@ -371,7 +382,7 @@ const Checkout = () => {
                             </div>
                             <div className="pc17-content-payment-input-box">
                                 <TextField
-                                id="report-item-location-pinCode"
+                                id="report-item-location-zipCode"
                                 label="Card Holder Name"
                                 variant="outlined"
                                 required
@@ -391,7 +402,7 @@ const Checkout = () => {
                             </div>
                             <div className="pc17-content-payment-input-box">
                                 <TextField
-                                id="report-item-location-pinCode"
+                                id="report-item-location-zipCode"
                                 label="CVV"
                                 error={ validateCVV(cardDetails.cvv) ? false : true}
                                 helperText={ validateCVV(cardDetails.cvv) ? "" : "Invalid CVV"}
@@ -434,7 +445,7 @@ const Checkout = () => {
             <div className="pc17-content-order-main-wrap">
                 <button className="pc17-content-order-button"
                 disabled={!(validateLuhnAlgorithm(cardDetails.cardNumber) && validateCVV(cardDetails.cvv) && cardDetails.cardHolderName?.length>0 && cardDetails.expiryDate?.length>0
-                &&  displayAddress.street2?.length>0 && displayAddress.city?.length>0 && displayAddress.state?.length>0 && displayAddress.zipCode?.length>0 && displayAddress.mobile?.length>0
+                &&  ((displayAddress.street2?.length>0 && displayAddress.city?.length>0 && displayAddress.state?.length>0 && displayAddress.zipCode?.length>0 && displayAddress.mobile?.length>0) || orderType!=="delivery")
     )}
     onClick={(e)=>{
         handleCheckout();

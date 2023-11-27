@@ -77,7 +77,7 @@ const userSchemax = new mongoose.Schema({
             minlength: 1,
             default: null,
         },
-        pinCode : {
+        zipCode : {
            
             type: 'string',
             minlength: 1,
@@ -101,6 +101,7 @@ const userSchemax = new mongoose.Schema({
     Cart: [],
     cart:[],
     reviews:[],
+    ratings:[],
 },{timeStamps:true});
 
 const userSchema= mongoose.model("userSchemas",userSchemax);

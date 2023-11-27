@@ -14,6 +14,10 @@ const restaurantSchemaX = new mongoose.Schema({
         default:"GuestName",
         
     },
+    types:[],
+    name:{
+        type:String,
+    },
     
     location: {
        
@@ -45,7 +49,7 @@ const restaurantSchemaX = new mongoose.Schema({
            
             default: null,
         },
-        pinCode : {
+        zipCode : {
            
             type: 'string',
            

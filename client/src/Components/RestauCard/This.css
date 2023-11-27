@@ -6,8 +6,7 @@
     width: 100%;
     box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.2);
     margin-bottom: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
     max-width: 800px;
 }
 
@@ -23,7 +22,7 @@
 .crc25-restaurant-name{
     font-size: 21px;
     font-weight: 600;
-    color: rgb(86, 207, 86);
+    color: red;
 }
 
 .crc25-restaurant-address{
@@ -37,6 +36,14 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
+
+}
+.crc25-restaurant-group-wrap-column{
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: flex-start;
 
 }
 .crc25-restaurant-phone{
@@ -66,24 +73,22 @@
 .crc25-main-text{
     font-size: 19px;
     font-weight: 400;
-    color: rgb(86, 207, 86);
+    color: red;
 }
 
 
 .crc25-text-general{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    
     width: 100%;
-    text-align: center;
+    
+    text-align: left;
     font-size: 19px;
     font-weight: 400;
     margin-top: 10px;
     max-width: 260px;
-word-wrap:break-word;
-text-overflow: ellipsis;
+    
 max-height: 30px;
-overflow: hidden;
+
 }
 
 .crc25-options-wrap{
@@ -109,5 +114,16 @@ overflow: hidden;
      border: none;
      justify-content: center;
      align-items: center;
-     background-color: rgb(86, 207, 86);
+     background-color: red;
+     color: white;
+}
+
+.prevent-text-overflow-without-width{
+    word-break: break-all;
+    word-wrap: break-word;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+ display: inline-block;
+
 }

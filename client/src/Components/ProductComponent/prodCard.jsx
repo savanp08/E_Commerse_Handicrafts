@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../../Store/Slices/CartSlice/CartSlice';
 import { openForm } from '../../Store/Slices/FormSlice/FormSlice';
 import './This.css';
+import '../ProductCard/ProductCard.scss';
 import { addRestaurant } from '../../Store/Slices/restaurantSlice/restaurantSlice';
 import { restaurant_initialState } from '../../Data/Schemas';
 import { addProduct } from '../../Store/Slices/ProductSlice/ProductSlice';
@@ -36,7 +37,7 @@ useEffect(()=>{
 
     }
 },[product,cart])
-    var Product=product;
+    var Product= JSON.parse(JSON.stringify(product));
     console.log(Product);
 if(Product &&  Product.Media && Product.Media[0])
 var x=5;
@@ -48,17 +49,31 @@ var Media=[""];
 if(Product && Product.Media && Product.Media[0])
 Media=Product.Media;
 if(Product.Rating<=0) Product.Rating=1;
-
+if(Product){
+    var tempRating = 0;
+    var tempCount = 0;
+    try{
+    Array.from(Product.reviews).forEach((item)=>{
+       tempRating+=item.rating/1;
+       tempCount++;
+    });
+}catch(err){
+    console.log("error in product card ",err);
+}
+    Product.Rating=tempRating/tempCount;
+ }
 
 async function AddToCartProduct(ProductX){
     var Product = {...ProductX};
-    Product.Quantity = Count+0;
+    Product.Quantity = Count/1;
     var tUser = {...user};
     var temp_map = new Map();
     Array.from(cart).forEach((item)=>{
         temp_map.set(item._id,item);
     })
+    if(Count>0)
     temp_map.set(Product._id,Product);
+    else temp_map.delete(Product._id);
     tUser.cart = Array.from(temp_map.values());
 
     if(user && user._id){
@@ -90,7 +105,7 @@ async function deleteCard(){
 
 
 }
-const address = restaurant? restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.pinCode : "";
+const address = restaurant? restaurant.location.street1 +", " + restaurant.location.street2+  ', ' + restaurant.location.city + ', ' + restaurant.location.state + ' ' + restaurant.location.zipCode : "";
 if(type && type==="admin")
 return (
     <div className="ProductCard-Wrapper">
@@ -130,8 +145,9 @@ return (
                    
             </div>
             <div className="ProductCard-BackSide-BottomWrapper">
-            <div className="Description-Top-Right-Bottom _300px">
-            <div className="DescriptionPage-QuantityWrapper InProductCardQuantityWrapper">
+            <div className="cpc00011-back-inner-bottom-wrap">
+            <div className="cpc00011-cart-buttons-wrap">
+            <div className='cpc00011-cart-quant-btn-wrap'>
             <div className="DescriptionPage-QuantityButtons Incr"
             onClick={()=>{
                setCount(Count+1);
@@ -149,6 +165,7 @@ return (
             }}
             >
             -
+            </div>
             </div>
             <button className="ppc90-addtocart-button"  
             onClick={()=>{
@@ -237,8 +254,9 @@ return(
                    
             </div>
             <div className="ProductCard-BackSide-BottomWrapper">
-            <div className="Description-Top-Right-Bottom _300px">
-            <div className="DescriptionPage-QuantityWrapper InProductCardQuantityWrapper">
+            <div className="cpc00011-back-inner-bottom-wrap">
+            <div className="cpc00011-cart-buttons-wrap">
+                <div className='cpc00011-cart-quant-btn-wrap'>
             <div className="DescriptionPage-QuantityButtons Incr"
             onClick={()=>{
                setCount(Count+1);
@@ -256,6 +274,7 @@ return(
             }}
             >
             -
+            </div>
             </div>
             <button className="ppc90-addtocart-button"  
             onClick={()=>{

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeForm } from "../../Store/Slices/FormSlice/FormSlice";
 import axios from "axios";
 import './This.css';
+import Autocomplete from '@mui/material/Autocomplete';
+import { typesOfEstablishment } from "../../Data/Options";
 
 const EditRestaurantComponent = () =>{
 
@@ -17,7 +19,7 @@ const EditRestaurantComponent = () =>{
         await axios.post("/Restaurant/editRestaurant",{
             ...restaurant,
             location: displayAddress,
-            restaurantName : displayAddress.street2 + " " + displayAddress.street1 + " " + displayAddress.apartment 
+            name:displayAddress.street2 + " " + displayAddress.street1 + " " + displayAddress.apartment 
             + " " + displayAddress.city + " " + displayAddress.state + " " + displayAddress.zipCode,
         }).then(res=>{
             console.log("response from adding rest ",res);
@@ -59,6 +61,73 @@ const EditRestaurantComponent = () =>{
                 <span className="carc23-title">Add Restaurant</span>
             </div>
             <div className="carc23-form-wrap">
+            <fieldset className="carc23-fieldset-wrap">
+                    <legend className="carc23-legend">Restaurant Location</legend>
+                    <div className="carc23-item-name-box">
+                    <TextField
+                    id="restaurant-name"
+                    label="Restaurant Name"
+                    variant="outlined"
+                    required
+                    value={restaurant.restaurantName|| ""}
+                    sx={{
+                        minWidth: "230px",
+                        marginBottom: "18px",
+                        marginLeft: "20px",
+                    }}
+                    onChange={(e) => {
+                        setRestaurant({
+                        ...restaurant,
+                        restaurantName: e.target.value,
+                        })
+                    }}
+                    />
+                    </div>
+                </fieldset>
+                <fieldset className="carc23-fieldset-wrap">
+                    <legend className="carc23-legend">Restaurant Location</legend>
+                    <Autocomplete
+                    multiple
+                    id="addReport-item-color"
+                    options={typesOfEstablishment}
+                    disableCloseOnSelect
+                    value={restaurant.types}
+                    limitTags={3}
+                    onChange={(e, values) => {
+                      setRestaurant({
+                        ...restaurant,
+                        types: values,
+                      });
+                    }}
+                    renderInput={(params) => {
+                      const { InputProps, ...restParams } = params;
+                      const { startAdornment, ...restInputProps } = InputProps;
+                      return (
+                        <TextField
+                          label="Types of Establishment"
+                          {...restParams}
+                          InputProps={{
+                            ...restInputProps,
+                            startAdornment: (
+                              <div
+                                style={{
+                                  maxHeight: "70px",
+                                  overflowY: "auto",
+                                  minWidth: "230px",
+                                }}
+                                sx={{
+                                  minWidth: "230px",
+                                }}
+                              >
+                                {startAdornment}
+                              </div>
+                            ),
+                          }}
+                        />
+                      );
+                    }}
+                  />
+                </fieldset>
                 <fieldset className="carc23-fieldset-wrap">
                     <legend className="carc23-legend">Restaurant Location</legend>
                     
@@ -152,9 +221,9 @@ const EditRestaurantComponent = () =>{
                       }}
                     />
                   </div>
-                  <div className="carc23-item-location-box carc23-pincode">
+                  <div className="carc23-item-location-box carc23-zipCode">
                     <TextField
-                      id="report-item-location-pinCode"
+                      id="report-item-location-zipCode"
                       label="Pin Code"
                       variant="outlined"
                       required

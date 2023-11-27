@@ -25,7 +25,7 @@ async function addRestaurant(driver){
         const state = await driver.wait(until.elementLocated(By.id('report-item-location-state')), 10000);
         await timeoutFunction(2);
         await state.sendKeys("CA");
-        const zip = await driver.wait(until.elementLocated(By.id('report-item-location-pinCode')), 10000);
+        const zip = await driver.wait(until.elementLocated(By.id('report-item-location-zipCode')), 10000);
         await timeoutFunction(2);
         await zip.sendKeys("94086");
         const submit = await driver.wait(until.elementLocated(By.id('carc23-add-rest-submit-button')), 10000);
