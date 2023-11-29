@@ -234,11 +234,11 @@ const AdminLogin = () => {
     </div>
     <div className="login-signUpWrap">
       <span className="login-signUpText">
-        {"Don't Have an Account? Sign in "}
+        
         <NavLink to="/SignUp" className="login-signUpButton"
         id="user-login-signup-button"
         >
-           {"Here"}
+          
         </NavLink>
       </span>
     </div>

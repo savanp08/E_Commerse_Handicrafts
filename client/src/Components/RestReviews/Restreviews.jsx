@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './RestReviews.css';
 import { Rating, TextField } from "@mui/material";
@@ -6,8 +6,9 @@ import axios from "axios";
 import { closeForm } from "../../Store/Slices/FormSlice/FormSlice";
 
 
-const Restreviews = ({restaurant,user}) =>{
-    
+const Restreviews = ({restaurantX,user}) =>{
+    var [restaurant,setRestaurant] = useState(restaurantX);
+
     const form = useSelector(state=>state.form.reviews);
     const dispatch = useDispatch();
     const [newReview , setNewReview] = useState({
@@ -16,6 +17,10 @@ const Restreviews = ({restaurant,user}) =>{
         text:"",
     })
 
+    useEffect(()=>{
+         setRestaurant(restaurantX);
+    },[restaurantX])
+   
     async function updateRestReviews(){
         try{
             if(!user || !user._id) {
@@ -39,6 +44,19 @@ const Restreviews = ({restaurant,user}) =>{
                   if(res && res.status=== 200){
                     var x= document.getElementById("crr003-add-review-form-wrap");
                     x.classList.toggle("Hide");
+                    setRestaurant({
+                        ...restaurant,
+                        reviews:[
+                            ...restaurant.reviews,
+                            {
+                                ...newReview,
+                                user:{
+                                   userId: user._id,
+                                    name: user.FullName,
+                                }
+                            }
+                        ]
+                    })
                   }
 
             }).catch(err=>{

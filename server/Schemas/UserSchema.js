@@ -20,7 +20,7 @@ const userSchemax = new mongoose.Schema({
         required:true,
          unique:false,
          minlength:2
-    },
+    }, 
     FirstName:{
         type:String,
         default:"Guest",

@@ -33,7 +33,13 @@ const Checkout = () => {
      })
      const user = useSelector(state=>state.user)
      const navigate = useNavigate();
-
+     var total=0;
+     try{
+      total=((checkout.total/1) + (8/100)*(checkout.total/1) + 5).toFixed(2);
+     }catch(err){
+          console.log("error in checkout page ",err);
+      
+     }
     useEffect(()=>{
         async function fetchOneRest(){
             console.log("restId in restaurant page ",restId);
@@ -361,6 +367,17 @@ const Checkout = () => {
                             </span>
                             <span className="pc17-content-order-details-item-name-text pc17-order-details-text-main">
                                 {0}$
+                                </span>
+
+                        </div>
+                        <div className="pc17-content-order-details-item-name-wrap">
+                            <span className="pc17-content-order-details-item-name-text">
+                                Total : 
+                            </span>
+                            <span className="pc17-content-order-details-item-name-text pc17-order-details-text-main">
+                                {
+                                total
+                                }$
                                 </span>
 
                         </div>

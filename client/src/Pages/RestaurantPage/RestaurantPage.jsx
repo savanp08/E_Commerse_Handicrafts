@@ -289,7 +289,7 @@ const RestaurantPage = () =>{
                 
               </div>
             </div>
-            <Restreviews restaurant={restaurant} user={user}/>
+            <Restreviews restaurantX={restaurant} user={user}/>
             <div className="prp15-restaurant-featured-list-wrap">
 
             </div>
